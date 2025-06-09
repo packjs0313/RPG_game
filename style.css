@@ -1,0 +1,525 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.hide {
+    display: none;
+}
+.disabled {
+    pointer-events: none; 
+    opacity: 0.5;
+}
+#LEVELUP {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px 50px;
+    color: orange;
+    font-weight: 900;
+    font-size: 100px;
+
+    transition: opacity 500ms;
+    opacity: 0;
+}
+
+section.main {
+    width: 100%;
+    height: calc(100vh - 220px);
+    background: white url(img/main_BG.jpg) no-repeat center /cover;
+
+    position: relative;
+
+    padding: 20px 30px;
+    h1{
+        color: #fff;
+        font-size: 30px;
+    }
+}
+
+.main>article {
+    width: 470px;
+    height: 400px;
+
+    &>div {
+        padding: 20px;
+    }
+}
+
+.you_char {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.me_char {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .char_img{
+        background: url(img/mychar.png) no-repeat center/110px;
+    }
+}
+
+.HP_MP {
+    width: 100%;
+    height: 120px;
+    background: #ddd;
+    border-radius: 10px;
+}
+
+.char_img {
+    height: 280px;
+    width: 100%;
+    background: no-repeat center/ 250px;
+}
+
+.HP_MP .name {
+    height: 30px;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.HP_MP div {
+    width: 402px;
+    height: 22px;
+    border: 1px solid #000;
+    position: relative;
+    color: #fff;
+
+    span:nth-child(2) {
+        font-size: 15px;
+        position: absolute;
+        right: 10px;
+        top: 1px;
+    }
+}
+
+.HP_MP div>span:first-child {
+    font-size: 14px;
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding: 0 10px;
+
+    transition: width 500ms;
+}
+
+.HP_MP .HP_bar {
+    span:first-child {
+        background: #f00;
+        box-sizing: border-box;
+    }
+}
+
+.HP_MP .MP_bar {
+    span:first-child {
+        background: cornflowerblue;
+    }
+}
+
+#normal_attack {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    cursor: pointer;
+
+    &:hover {
+        opacity: 60%;
+    }
+}
+
+/* =========================section.st_popup============================== */
+section.interaction {
+    width: 100%;
+    height: 220px;
+    background: #222;
+    display: flex;
+}
+
+.interaction article {
+    width: 50%;
+    height: 100%;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 25px;
+}
+
+.interaction article.manu {
+    width: 50%;
+    height: 100%;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+
+    ul{
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        li{
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            text-align: center;
+
+            cursor: pointer;
+            &:hover{
+                opacity: 60%;
+            }
+            
+            img{
+                width: 75%;
+                margin: 0 auto;
+                color: #fff;
+            }
+            h3{
+                font-weight: 700;
+                font-size: 20px;
+            }
+        }
+    }
+    #GoldText{
+        font-size: 15px;
+        font-weight: 700;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+}
+
+.interaction .skill_popup h2 {
+    margin-bottom:10px ;
+}
+.interaction .skill_popup ul {
+    display: flex;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.interaction .skill_popup ul li {
+    width: 45%;
+    height: 50px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 3px;
+    border: 1px solid #fff;
+
+    transition: transform 0.3s;
+    &.active:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+    &>div{
+        display: flex;
+        gap: 3px;
+        align-items: end;
+        &>span{
+            font-size: 12px;
+            color: cornflowerblue;
+        }
+    }
+
+}
+
+/* ===================================Stats_popup======================================= */
+#Stats_popup {
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#Stats_popup div {
+    width: 400px;
+    height: 500px;
+    border: 1px solid #fff;
+    background: #222;
+    padding: 20px 30px;
+    border-radius: 10px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: #fff;
+
+    h1 {
+        font-size: 35px;
+    }
+
+    ul {
+        height: 270px;
+        margin: 30px 0 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        font-size: 25px;
+
+        li {
+            display: flex;
+            justify-content: space-between;
+
+            span:last-child {
+                width: 36px;
+                height: 36px;
+                font-weight: 900;
+                text-align: center;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 40%;
+                }
+            }
+        }
+    }
+
+    &>span:last-child {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+
+        font-weight: 900;
+        font-size: 26px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 40%;
+        }
+    }
+}
+
+/*======================skills_popup==================*/
+#skills_popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+
+
+    &>div {
+        width: 900px;
+        height: 600px;
+        background: #222;
+        padding: 20px;
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+
+        h2 {
+            color: #fff;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            padding-top: 15PX;
+            width: 800px;
+            height: 450px;
+            margin: 0 auto;
+            overflow-y: scroll;
+
+            color: #fff;
+
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+
+            li {
+                width: 96%;
+                min-height: 150px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+                padding: 25px;
+                border-radius: 5px;
+                position: relative;
+                margin: 10px 0;
+
+                transition: transform 0.3s;
+                &:hover {
+                    transform: scale(1.03);
+                }
+
+                .skillTitle {
+                    display: flex;
+                    align-items: end;
+                    gap: 10px;
+                    margin-bottom: 10px;
+
+                    span {
+                        color: cornflowerblue;
+                    }
+                }
+
+                .Gold {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                }
+
+                .skillExplanation {
+                    display: block;
+                    width: 570px;
+                }
+
+                .skillButton {
+                    padding: 10px 30px;
+                    border: 1px solid #fff;
+                    border-radius: 15px;
+                    cursor: pointer;
+
+                    position: absolute;
+                    bottom: 25px;
+                    right: 25px;
+
+                    &:hover {
+                        opacity: 40%;
+                    }
+                }
+            }
+        }
+
+        &>span:first-of-type {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+
+            cursor: pointer;
+            color: #fff;
+            font-size: 30px;
+            font-weight: 900;
+
+            &:hover {
+                opacity: 40%;
+            }
+        }
+        #GoldText2{
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+        }
+    }
+}
+.SkillSlot{
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    z-index: 99999;
+    &>div{
+        width: 500px;
+        height: 500px;
+        background: #222;
+        border-radius: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+
+        ul{
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            li{
+                width: calc(50% - 20px);
+                height: 180px;
+                text-align: center;
+                color: #fff;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border: 1px solid #fff;
+                border-radius: 10px;
+                cursor: pointer;
+
+                &:hover{
+                    opacity: 60%;
+                }
+
+                span{
+                    font-weight: 900;
+                    font-size: 40px;
+                }
+            }
+        }
+    }
+}
+#gameOver{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999999999;
+    background: rgba(0, 0, 0, 0.93);;
+    
+    span{
+        font-size: 100px;
+        font-weight: 900;
+        padding: 40px 100px;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    
+    transition: opacity 3s ease;
+    opacity: 0;
+
+    &.action {
+    opacity: 1;
+    }
+}
