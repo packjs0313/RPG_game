@@ -16,8 +16,16 @@
             <div class="HP_MP">
                 <span class="name">상대</span>
                 <span class="LV" id="LV_enemy">LV.10</span>
-                <div class="HP_bar"><span>HP</span><span>90/100</span></div>
-                <div class="MP_bar"><span>MP</span><span>90/100</span></div>
+                <div class="HP_bar">
+                    <span class="bar_label">HP</span>       
+                    <div class="bar_fill"></div>              
+                    <span class="bar_text">90/100</span>      
+                </div>
+                <div class="MP_bar">
+                    <span class="bar_label">MP</span>       
+                    <div class="bar_fill"></div>              
+                    <span class="bar_text">90/100</span>      
+                </div>
             </div>
             <div class="char_img">
 
@@ -28,8 +36,16 @@
                 <span class="name" id="my_name">나</span>
                 <span class="LV" id="LV">LV.1</span>
                 <span id="xp_me" style="color: darkgoldenrod;">(xp 0/200)</span>
-                <div class="HP_bar"><span>HP</span><span>90/100</span></div>
-                <div class="MP_bar"><span>MP</span><span>90/100</span></div>
+                <div class="HP_bar">
+                    <span class="bar_label">HP</span>       
+                    <div class="bar_fill"></div>              
+                    <span class="bar_text">90/100</span>      
+                </div>
+                <div class="MP_bar">
+                    <span class="bar_label">MP</span>       
+                    <div class="bar_fill"></div>              
+                    <span class="bar_text">90/100</span>      
+                </div>
             </div>
             <div class="char_img">
             </div>
@@ -174,8 +190,21 @@
             </ul>
         </div>
     </article>
+
+    <article class="key_popup">
+        <ul>
+            <li>
+                <span class="key">ESC</span>
+                <span class="key_ability">ESC</span>
+            </li>
+        </ul>
+    </article>
+
     <article id="gameOver">
-        <span>Game Over</span>
+        <div>
+            <span>Game Over</span>
+            <span id="Die_stage">스테이지 7</span>
+        </div>
     </article>
 </body>
 

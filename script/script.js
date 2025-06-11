@@ -61,7 +61,7 @@ function enemyLvTextFc() {
 }
 function gainXPFromEnemy() {
     const baseXP = 50;
-    const xpGain = Math.floor(baseXP * (enemy_lv / lv));
+    const xpGain = Math.floor(baseXP * (enemy_lv / lv)*2);
     gainXP(xpGain);
 }
 function goldFromEnemy() {
@@ -162,6 +162,27 @@ function SkillPopFcOn() {
     GoldTextFc();
 }
 
+//단축키
+document.addEventListener("keydown", () => {
+
+    if(window.event.keyCode === 27){
+        statsPopFcOff();
+        SkillPopFcOff();
+    }else if(window.event.key === "a"){
+        statsPopFcOn();
+    }else if(window.event.key === "s"){
+        SkillPopFcOn();
+    }else if(window.event.key ==="q" || window.event.key ==="1" ){
+        useSkill(skillslot[0])
+    }else if(window.event.key ==="w" || window.event.key ==="2" ){
+        useSkill(skillslot[1])
+    }else if(window.event.key ==="e" || window.event.key ==="3" ){
+        useSkill(skillslot[2])
+    }else if(window.event.key ==="r" || window.event.key ==="4" ){
+        useSkill(skillslot[3])
+    }
+})
+
 // 사이트 오픈시 실행
 document.addEventListener("DOMContentLoaded", () => {
     const name_text = document.querySelector("#my_name");
@@ -187,17 +208,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //HP, MP바 증감
-const my_HP_fill = document.querySelector(".me_char .HP_bar span:first-child");
-const my_MP_fill = document.querySelector(".me_char .MP_bar span:first-child");
+const my_HP_fill = document.querySelector(".me_char .HP_bar .bar_fill");
+const my_MP_fill = document.querySelector(".me_char .MP_bar .bar_fill");
 
-const my_HP_text = document.querySelector(".me_char .HP_bar span:nth-child(2)");
-const my_MP_text = document.querySelector(".me_char .MP_bar span:nth-child(2)");
+const my_HP_text = document.querySelector(".me_char .HP_bar .bar_text");
+const my_MP_text = document.querySelector(".me_char .MP_bar .bar_text");
 
-const enemy_HP_fill = document.querySelector(".you_char .HP_bar span:first-child");
-const enemy_MP_fill = document.querySelector(".you_char .MP_bar span:first-child");
+const enemy_HP_fill = document.querySelector(".you_char .HP_bar .bar_fill");
+const enemy_MP_fill = document.querySelector(".you_char .MP_bar .bar_fill");
 
-const enemy_HP_text = document.querySelector(".you_char .HP_bar span:nth-child(2)");
-const enemy_MP_text = document.querySelector(".you_char .MP_bar span:nth-child(2)");
+const enemy_HP_text = document.querySelector(".you_char .HP_bar .bar_text");
+const enemy_MP_text = document.querySelector(".you_char .MP_bar .bar_text");
 
 function MPHP_Percent() {
     let my_HP_percent = HP / Max_HP * 100;
@@ -339,6 +360,7 @@ function useSkill(skill) {
 
     if (skill.name === "힐") {
         HP_Fc(skill.damage * -1);
+        alert(`${skill.name}을 사용하여 체력을 ${skill.damage} 회복했습니다.`);
     }else {
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
@@ -431,9 +453,9 @@ function updateTurnUI() {
 function endTurn() {
     if (turn === "player") {
         turn = "enemy";
-        MP_Fc(Max_MP / 5);
+        MP_Fc(Max_MP / 10);
         updateTurnUI();
-        setTimeout(enemyAction, 300); // 1초 후 적의 공격 실행
+        setTimeout(enemyAction, 500); // 1초 후 적의 공격 실행
     } else {
         turn = "player";
         updateTurnUI();
@@ -452,17 +474,19 @@ function enemyAction() {
 //적 사망
 function dieEnemy() {
     if (enemy_HP <= 0) {
-        gainXPFromEnemy();
-        goldFromEnemy();
-        stage++;
-        enemy_HP = enemy_Max_HP;
-        enemyLvTextFc();
-        RandomMonster();
-        text();
-        GoldTextFc();
-        MPHP_Percent();
-        MP_Fc(Max_MP / 5);
-        turn = "player";
+        setTimeout(() => {
+                    gainXPFromEnemy();
+            goldFromEnemy();
+            stage++;
+            enemy_HP = enemy_Max_HP;
+            enemyLvTextFc();
+            RandomMonster();
+            text();
+            GoldTextFc();
+            MPHP_Percent();
+            MP_Fc(Max_MP / 5);
+            turn = "player";
+        },500)
     }
 }
 let enemy_char = [
@@ -496,13 +520,15 @@ function RandomMonster() {
         enemy_img.style.backgroundImage = ` url(${enemy_char[2].img})`
     }
 }
+//게임오버
 function gameOver() {
     const gameOverText = document.querySelector("#gameOver")
+    const gameOverStageText = document.querySelector("#Die_stage")
     if (HP === 0) {
         gameOverText.style.display = 'block';
-
         setTimeout(() => {
             gameOverText.classList.add("action");
+            gameOverStageText.textContent = `STAGE ${stage}`
         }, 1);
     }
 }

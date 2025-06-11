@@ -86,14 +86,20 @@ section.main {
     font-size: 30px;
 }
 
-.HP_MP div {
+.HP_MP>div {
     width: 402px;
     height: 22px;
     border: 1px solid #000;
     position: relative;
     color: #fff;
 
-    span:nth-child(2) {
+    .bar_label {
+        font-size: 15px;
+        position: absolute;
+        left: 10px;
+        top: 1px;
+    }
+    .bar_text {
         font-size: 15px;
         position: absolute;
         right: 10px;
@@ -101,25 +107,23 @@ section.main {
     }
 }
 
-.HP_MP div>span:first-child {
+.HP_MP div .bar_fill {
+    height: 100%;
     font-size: 14px;
     color: #fff;
     display: block;
-    width: 100%;
-    padding: 0 10px;
 
     transition: width 500ms;
 }
 
 .HP_MP .HP_bar {
-    span:first-child {
+    div{
         background: #f00;
-        box-sizing: border-box;
     }
 }
 
 .HP_MP .MP_bar {
-    span:first-child {
+    div {
         background: cornflowerblue;
     }
 }
@@ -505,15 +509,27 @@ section.interaction {
     z-index: 999999999999;
     background: rgba(0, 0, 0, 0.93);;
     
-    span{
-        font-size: 100px;
-        font-weight: 900;
+    div{
+
         padding: 40px 100px;
         color: #fff;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
+        
+        span{
+            display: block;
+            text-align: center;
+        }
+        span:first-child{
+            font-size: 100px;
+            font-weight: 900;
+        }
+        span:last-child{
+            font-size: 40px;
+            font-weight: 700;
+        }
     }
     
     transition: opacity 3s ease;
