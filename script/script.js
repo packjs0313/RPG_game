@@ -61,7 +61,7 @@ function enemyLvTextFc() {
 }
 function gainXPFromEnemy() {
     const baseXP = 50;
-    const xpGain = Math.floor(baseXP * (enemy_lv / lv)*2);
+    const xpGain = Math.floor(baseXP * (enemy_lv / lv)*1.5);
     gainXP(xpGain);
 }
 function goldFromEnemy() {
@@ -475,7 +475,7 @@ function enemyAction() {
 function dieEnemy() {
     if (enemy_HP <= 0) {
         setTimeout(() => {
-                    gainXPFromEnemy();
+            gainXPFromEnemy();
             goldFromEnemy();
             stage++;
             enemy_HP = enemy_Max_HP;
