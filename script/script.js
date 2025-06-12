@@ -200,13 +200,22 @@ document.addEventListener("keyup", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const name_text = document.querySelector("#my_name");
 
-    let game_name = "";
-    while (true) {
-        game_name = prompt("닉네임을 입력하세요 (최대 10글자)") || "";
-        game_name = game_name.trim();
+    // 로컬 스토리지에서 사용자 이름 가져오기
+    let game_name = localStorage.getItem("rpg_game_username");
 
-        if (game_name && game_name.length <= 10) break;
-        alert("닉네임은 1~10글자 사이여야 합니다.");
+    // 저장된 이름이 없으면 새로 입력받기
+    if (!game_name) {
+        while (true) {
+            game_name = prompt("닉네임을 입력하세요 (최대 10글자)") || "";
+            game_name = game_name.trim();
+
+            if (game_name && game_name.length <= 10) {
+                // 유효한 닉네임이면 로컬 스토리지에 저장
+                localStorage.setItem("rpg_game_username", game_name);
+                break;
+            }
+            alert("닉네임은 1~10글자 사이여야 합니다.");
+        }
     }
 
     name_text.textContent = game_name;
