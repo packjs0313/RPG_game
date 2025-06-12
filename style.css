@@ -3,6 +3,8 @@
     padding: 0;
     list-style: none;
     box-sizing: border-box;
+    user-select: none;
+}
 }
 .freeze{
     filter: hue-rotate(200deg) saturate(2);
