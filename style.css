@@ -198,6 +198,7 @@ section.interaction {
             h3{
                 font-weight: 700;
                 font-size: 20px;
+                user-select: none; /* 텍스트 드래그/커서 방지 */
             }
         }
     }
@@ -207,6 +208,7 @@ section.interaction {
         position: absolute;
         left: 10px;
         top: 10px;
+        user-select: none; /* 텍스트 드래그/커서 방지 */
     }
 }
 
@@ -232,6 +234,7 @@ section.interaction {
     border: 1px solid #fff;
 
     transition: transform 0.3s;
+    user-select: none; /* 텍스트 드래그/커서 방지 */
     &.active:hover {
         transform: scale(1.05);
         cursor: pointer;
@@ -243,6 +246,7 @@ section.interaction {
         &>span{
             font-size: 12px;
             color: cornflowerblue;
+            user-select: none; /* 텍스트 드래그/커서 방지 */
         }
     }
 
@@ -277,6 +281,7 @@ section.interaction {
 
     h1 {
         font-size: 35px;
+        user-select: none;
     }
 
     ul {
@@ -292,6 +297,7 @@ section.interaction {
             display: flex;
             justify-content: space-between;
 
+            user-select: none;
             span:last-child {
                 width: 36px;
                 height: 36px;
@@ -318,6 +324,8 @@ section.interaction {
         &:hover {
             opacity: 40%;
         }
+
+        user-select: none;
     }
 }
 
@@ -350,6 +358,7 @@ section.interaction {
             font-size: 40px;
             font-weight: 700;
             margin-bottom: 20px;
+            user-select: none;
         }
 
         ul {
@@ -494,6 +503,7 @@ section.interaction {
                 span{
                     font-weight: 900;
                     font-size: 40px;
+                    user-select: none;
                 }
             }
         }
@@ -521,6 +531,7 @@ section.interaction {
         span{
             display: block;
             text-align: center;
+            user-select: none;
         }
         span:first-child{
             font-size: 100px;
@@ -556,6 +567,7 @@ section.interaction {
     pointer-events: none;
     z-index: 999999;
     transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
+    user-select: none;
 }
 #action-message.show {
     opacity: 1;

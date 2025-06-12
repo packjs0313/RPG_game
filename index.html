@@ -11,20 +11,20 @@
 
 <body>
     <section class="main">
-        <h1 id="stage">STAGE 1</h1>
+        <h1 id="stage" style="user-select: none; cursor: default;">STAGE 1</h1>
         <article class="you_char">
             <div class="HP_MP">
-                <span class="name">상대</span>
-                <span class="LV" id="LV_enemy">LV.10</span>
+                <span class="name" style="user-select: none; cursor: default;">상대</span>
+                <span class="LV" id="LV_enemy" style="user-select: none; cursor: default;">LV.10</span>
                 <div class="HP_bar">
-                    <span class="bar_label">HP</span>       
+                    <span class="bar_label" style="user-select: none; cursor: default;">HP</span>       
                     <div class="bar_fill"></div>              
-                    <span class="bar_text">90/100</span>      
+                    <span class="bar_text" style="user-select: none; cursor: default;">90/100</span>      
                 </div>
                 <div class="MP_bar">
-                    <span class="bar_label">MP</span>       
+                    <span class="bar_label" style="user-select: none; cursor: default;">MP</span>       
                     <div class="bar_fill"></div>              
-                    <span class="bar_text">90/100</span>      
+                    <span class="bar_text" style="user-select: none; cursor: default;">90/100</span>      
                 </div>
             </div>
             <div class="char_img">
@@ -33,18 +33,18 @@
         </article>
         <article class="me_char">
             <div class="HP_MP">
-                <span class="name" id="my_name">나</span>
-                <span class="LV" id="LV">LV.1</span>
-                <span id="xp_me" style="color: darkgoldenrod;">(xp 0/200)</span>
+                <span class="name" id="my_name" style="user-select: none; cursor: default;">나</span>
+                <span class="LV" id="LV" style="user-select: none; cursor: default;">LV.1</span>
+                <span id="xp_me" style="color: darkgoldenrod; user-select: none; cursor: default;">(xp 0/200)</span>
                 <div class="HP_bar">
-                    <span class="bar_label">HP</span>       
+                    <span class="bar_label" style="user-select: none; cursor: default;">HP</span>       
                     <div class="bar_fill"></div>              
-                    <span class="bar_text">90/100</span>      
+                    <span class="bar_text" style="user-select: none; cursor: default;">90/100</span>      
                 </div>
                 <div class="MP_bar">
-                    <span class="bar_label">MP</span>       
+                    <span class="bar_label" style="user-select: none; cursor: default;">MP</span>       
                     <div class="bar_fill"></div>              
-                    <span class="bar_text">90/100</span>      
+                    <span class="bar_text" style="user-select: none; cursor: default;">90/100</span>      
                 </div>
             </div>
             <div class="char_img">
@@ -56,15 +56,15 @@
     <div id="action-message"></div>
     <section class="interaction">
         <article class="manu">
-            <span id="GoldText"></span>
+            <span id="GoldText" style="user-select: none; cursor: default;"></span>
             <ul>
                 <li onclick="statsPopFcOn()">
                     <img src="img/stats.png" alt="스탯">
-                    <h3>스탯</h3>
+                    <h3 style="user-select: none; cursor: default;">스탯</h3>
                 </li>
                 <li onclick="SkillPopFcOn()">
                     <img src="img/skillicon.webp" alt="스탯" style="filter: invert(1)">
-                    <h3>스킬</h3>
+                    <h3 style="user-select: none; cursor: default;">스킬</h3>
                 </li>
                 <!--                <li onclick="gold_Fc(100)" >-->
                 <!--                    <img src="img/stats.png" alt="골드지급">-->
@@ -81,118 +81,117 @@
             </ul>
         </article>
         <article class="skill_popup">
-            <h2>스킬</h2>
+            <h2 style="user-select: none; cursor: default;">스킬</h2>
             <ul>
                 <li id="sk1" class="skillButton">
                     <div>
-                        <h4 class="skillName">스킬없음</h4>
-                        <span>(-MP)</span>
+                        <h4 class="skillName" style="user-select: none; cursor: default;">스킬없음</h4>
+                        <span style="user-select: none; cursor: default;">(-MP)</span>
                     </div>
-                    <span class="skilldamage">데미지 : -</span>
+                    <span class="skilldamage" style="user-select: none; cursor: default;">데미지 : -</span>
                 </li>
                 <li id="sk2" class="skillButton">
                     <div>
-                        <h4 class="skillName">스킬없음</h4>
-                        <span>(-MP)</span>
+                        <h4 class="skillName" style="user-select: none; cursor: default;">스킬없음</h4>
+                        <span style="user-select: none; cursor: default;">(-MP)</span>
                     </div>
-                    <span class="skilldamage">데미지 : -</span>
+                    <span class="skilldamage" style="user-select: none; cursor: default;">데미지 : -</span>
                 </li>
                 <li id="sk3" class="skillButton">
                     <div>
-                        <h4 class="skillName">스킬없음</h4>
-                        <span>(-MP)</span>
+                        <h4 class="skillName" style="user-select: none; cursor: default;">스킬없음</h4>
+                        <span style="user-select: none; cursor: default;">(-MP)</span>
                     </div>
-                    <span class="skilldamage">데미지 : -</span>
+                    <span class="skilldamage" style="user-select: none; cursor: default;">데미지 : -</span>
                 </li>
                 <li id="sk4" class="skillButton">
                     <div>
-                        <h4 class="skillName">스킬없음</h4>
-                        <span>(-MP)</span>
+                        <h4 class="skillName" style="user-select: none; cursor: default;">스킬없음</h4>
+                        <span style="user-select: none; cursor: default;">(-MP)</span>
                     </div>
-                    <span class="skilldamage">데미지 : -</span>
+                    <span class="skilldamage" style="user-select: none; cursor: default;">데미지 : -</span>
                 </li>
             </ul>
         </article>
     </section>
-    <h1 id="LEVELUP">LEVEL UP !</h1>
+    <h1 id="LEVELUP" style="user-select: none; cursor: default;">LEVEL UP !</h1>
     <article id="Stats_popup" class="hide">
         <div>
-            <h1>스탯</h1>
+            <h1 style="user-select: none; cursor: default;">스탯</h1>
             <ul>
-                <li><span>HP : </span><span onclick="statsHP()">+</span></li>
-                <li><span>MP : </span><span onclick="statsMP()">+</span></li>
-                <li><span>공격력 : </span><span onclick="statsStr()">+</span></li>
-                <li><span>스킬데미지 : </span><span onclick="statsSk()">+</span></li>
+                <li><span style="user-select: none; cursor: default;">HP : </span><span onclick="statsHP()">+</span></li>
+                <li><span style="user-select: none; cursor: default;">MP : </span><span onclick="statsMP()">+</span></li>
+                <li><span style="user-select: none; cursor: default;">공격력 : </span><span onclick="statsStr()">+</span></li>
+                <li><span style="user-select: none; cursor: default;">스킬데미지 : </span><span onclick="statsSk()">+</span></li>
             </ul>
-            <span id="skill_point">남은 스킬포인트 : 0</span>
-            <span id="stat-point-warning"></span>
-            <span onclick="statsPopFcOff()">X</span>
+            <span id="skill_point" style="user-select: none; cursor: default;">남은 스킬포인트 : 0</span>
+            <span id="stat-point-warning" style="user-select: none; cursor: default;"></span>
+            <span onclick="statsPopFcOff()" style="user-select: none; cursor: default;">X</span>
         </div>
     </article>
     <article id="skills_popup" class="hide">
         <div>
-            <h2>스킬</h2>
+            <h2 style="user-select: none; cursor: default;">스킬</h2>
             <ul>
                 <li>
                     <div class="skillTitle">
-                        <h1>파이어볼</h1> <span class="skillMp">10MP</span>
+                        <h1 style="user-select: none; cursor: default;">파이어볼</h1> <span class="skillMp" style="user-select: none; cursor: default;">10MP</span>
                     </div>
-                    <span class="Gold">100G</span>
-                    <span class="skillExplanation">작은 불덩일를 소환하는 기본마법.</span>
+                    <span class="Gold" style="user-select: none; cursor: default;">100G</span>
+                    <span class="skillExplanation" style="user-select: none; cursor: default;">작은 불덩일를 소환하는 기본마법.</span>
                     <span class="skillButton" onclick="buySkill(this, 100)"> 스킬 구매</span>
                 </li>
                 <li>
                     <div class="skillTitle">
-                        <h1>아이스샷</h1> <span class="skillMp">20MP</span>
+                        <h1 style="user-select: none; cursor: default;">아이스샷</h1> <span class="skillMp" style="user-select: none; cursor: default;">20MP</span>
                     </div>
-                    <span class="Gold">300G</span>
-                    <span class="skillExplanation"> 작은 고드름을 소환하는 기본마법.</span>
+                    <span class="Gold" style="user-select: none; cursor: default;">300G</span>
+                    <span class="skillExplanation" style="user-select: none; cursor: default;"> 작은 고드름을 소환하는 기본마법.</span>
                     <span class="skillButton" value="0" onclick="buySkill(this, 300)"> 스킬 구매</span>
                 </li>
                 <li>
                     <div class="skillTitle">
-                        <h1>힐</h1> <span class="skillMp">50MP</span>
+                        <h1 style="user-select: none; cursor: default;">힐</h1> <span class="skillMp" style="user-select: none; cursor: default;">50MP</span>
                     </div>
-                    <span class="Gold">300G</span>
-                    <span class="skillExplanation"> 체력을 회복한다</span>
+                    <span class="Gold" style="user-select: none; cursor: default;">300G</span>
+                    <span class="skillExplanation" style="user-select: none; cursor: default;"> 체력을 회복한다</span>
                     <span class="skillButton" onclick="buySkill(this, 300)"> 스킬 구매</span>
                 </li>
                 <li>
                     <div class="skillTitle">
-                        <h1>강펀치</h1> <span class="skillMp">50MP</span>
+                        <h1 style="user-select: none; cursor: default;">강펀치</h1> <span class="skillMp" style="user-select: none; cursor: default;">50MP</span>
                     </div>
-                    <span class="Gold">500G</span>
-                    <span class="skillExplanation">주먹에 모든 힘을 담아 강한 공격을 한다.</span>
+                    <span class="Gold" style="user-select: none; cursor: default;">500G</span>
+                    <span class="skillExplanation" style="user-select: none; cursor: default;">주먹에 모든 힘을 담아 강한 공격을 한다.</span>
                     <span class="skillButton" onclick="buySkill(this, 500)"> 스킬 구매</span>
                 </li>
                 <li>
                     <div class="skillTitle">
-                        <h1>익스플로전 !</h1> <span class="skillMp">200MP</span>
+                        <h1 style="user-select: none; cursor: default;">익스플로전 !</h1> <span class="skillMp" style="user-select: none; cursor: default;">200MP</span>
                     </div>
-                    <span class="Gold">1000G</span>
-                    <span class="skillExplanation">암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라<br> 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 <br>익스플로전!</span>
+                    <span class="Gold" style="user-select: none; cursor: default;">1000G</span>
+                    <span class="skillExplanation" style="user-select: none; cursor: default;">암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라<br> 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 <br>익스플로전!</span>
                     <span class="skillButton" onclick="buySkill(this, 1000)"> 스킬 구매</span>
                 </li>
             </ul>
-            <span onclick="SkillPopFcOff()">X</span>
-            <span id="GoldText2"></span>
+            <span onclick="SkillPopFcOff()" style="user-select: none; cursor: default;">X</span>
+            <span id="GoldText2" style="user-select: none; cursor: default;"></span>
         </div>
     </article>
     <article class="SkillSlot hide">
         <div>
             <ul>
-                <li onclick="skillSlotIndex(0)"><span>1번</span></li>
-                <li onclick="skillSlotIndex(1)"><span>2번</span></li>
-                <li onclick="skillSlotIndex(2)"><span>3번</span></li>
-                <li onclick="skillSlotIndex(3)"><span>4번</span></li>
+                <li onclick="skillSlotIndex(0)"><span style="user-select: none; cursor: default;">1번</span></li>
+                <li onclick="skillSlotIndex(1)"><span style="user-select: none; cursor: default;">2번</span></li>
+                <li onclick="skillSlotIndex(2)"><span style="user-select: none; cursor: default;">3번</span></li>
+                <li onclick="skillSlotIndex(3)"><span style="user-select: none; cursor: default;">4번</span></li>
             </ul>
         </div>
     </article>
-
     <article id="gameOver">
         <div>
-            <span>Game Over</span>
-            <span id="Die_stage">스테이지 7</span>
+            <span style="user-select: none; cursor: default;">Game Over</span>
+            <span id="Die_stage" style="user-select: none; cursor: default;">스테이지 7</span>
         </div>
     </article>
 
