@@ -111,7 +111,7 @@ const stets_point_Text = document.querySelector("#skill_point");
 function statsTextFc() {
     st_HP_Text.textContent = `HP : ${stats.HP}`;
     st_MP_Text.textContent = `MP : ${stats.MP}`;
-    st_Str_Text.textContent = `공격력 : ${stats.stats.str}`;
+    st_Str_Text.textContent = `공격력 : ${stats.str}`;
     st_Sk_Text.textContent = `스킬데미지 : ${stats.sk}`;
     stets_point_Text.textContent = `남은 스킬포인트 : ${stats.point}`;
 }
@@ -301,7 +301,7 @@ const skills = [
     {
         name: "파이어볼",
         price: 100,
-        Explanation: "작은 불덩일를 소환하는 기본마법.",
+        Explanation: "작은 불덩일를 소환하는 기본마법. (공격력 : 15 + 스킬데미지 x 15)",
         mana: 10,
         get damage() {
             return 15 + 15 * stats.sk;
@@ -310,7 +310,7 @@ const skills = [
     {
         name: "아이스샷",
         price: 100,
-        Explanation: "작은 고드름을 소환하는 기본마법.",
+        Explanation: "작은 고드름을 소환하는 기본마법 .10%확률로 적을 2턴 얼린다.(공격력 : 15 + 스킬데미지 x 20)",
         mana: 20,
         get damage() {
             return 15 + 20 * stats.sk;
@@ -319,17 +319,17 @@ const skills = [
     {
         name: "힐",
         price: 300,
-        Explanation: "체력을 회복한다",
+        Explanation: "체력을 회복한다 (회복량 : 10 + 스킬데미지 x20 )",
         mana: 50,
         get damage() {
-            return -10 - 25 * stats.sk;
+            return -10 - 20 * stats.sk;
         },
     },
     {
         name: "강펀치",
         price: 300,
-        Explanation: "주먹에 모든 힘을 담아 강한 공격을 한다.",
-        mana: 50,
+        Explanation: "주먹에 모든 힘을 담아 강한 공격을 한다. (공격력 : 20 + 스킬데미지 x 30)",
+        mana: 30,
         get damage() {
             return 20 + 30 * stats.str;
         },
@@ -344,6 +344,17 @@ const skills = [
         },
     },
 ];
+let freeze = 0;
+
+function skillpopText(){
+    const skillTap = document.querySelectorAll("#skills_popup li")
+    for (let i = 0; i < skillTap.length; i++){
+        skillTap[i].querySelector("h1") = skills[i].name;
+        skillTap[i].querySelector(".skillMp") = skills[i].mana
+        skillTap[i].querySelector(".skillExplanation") = skills[i].Explanation
+        skillTap[i].querySelector(".Gold") = skills[i].price
+    }
+}
 
 //일반공격
 const punch = document.querySelector("#normal_attack");
@@ -359,7 +370,6 @@ function punchFc() {
 punch.addEventListener("click", punchFc);
 
 //스킬이펙트
-
 
 
 //스킬사용
@@ -389,14 +399,15 @@ function useSkill(skill) {
 
     if (skill.name === "힐") {
         HP_Fc(skill.damage * -1);
-        alert(`${skill.name}을 사용하여 체력을 ${skill.damage} 회복했습니다.`);
+        alert(`${skill.name}을 사용하여 체력을 ${-skill.damage} 회복했습니다.`);
     }else if(skill.name === "파이어볼"){
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
-        ``
+        
     }else if(skill.name === "아이스샷"){
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
+        if(random <= 0.1) freeze = 2;
     }else{
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
@@ -501,10 +512,15 @@ function endTurn() {
 
 // 적턴
 function enemyAction() {
+    if(freeze > 0) {
+        freeze--;
+        return;
+    }
+
     const damage = enemy_lv * 5;
     HP_Fc(-damage);
     alert(`적이 공격했습니다! ${damage} 데미지를 입었습니다.`);
-    gameOver()
+    gameOver();
     endTurn(); // 다시 플레이어 턴으로
 }
 //적 사망
