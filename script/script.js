@@ -159,12 +159,12 @@ function statsSk() {
 const Skill_pop = document.querySelector("#skills_popup");
 function SkillPopFcOff() {
     Skill_pop.classList.add("hide");
-    setTimeout(skillpopText,100)
-    
 }
 function SkillPopFcOn() {
     Skill_pop.classList.remove("hide");
     GoldTextFc();
+    skillpopText();
+
 }
 
 //단축키
