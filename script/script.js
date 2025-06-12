@@ -347,13 +347,13 @@ const skills = [
 ];
 let freeze = 0;
 
-function skillpopText(){
-    const skillTap = document.querySelectorAll("#skills_popup li")
-    for (let i = 0; i < skillTap.length; i++){
-        skillTap[i].querySelector("h1") = skills[i].name;
-        skillTap[i].querySelector(".skillMp") = skills[i].mana
-        skillTap[i].querySelector(".skillExplanation") = skills[i].Explanation
-        skillTap[i].querySelector(".Gold") = skills[i].price
+function skillpopText() {
+    const skillTap = document.querySelectorAll("#skills_popup li");
+    for (let i = 0; i < skillTap.length; i++) {
+        skillTap[i].querySelector("h1").textContent = skills[i].name;
+        skillTap[i].querySelector(".skillMp").textContent = skills[i].mana;
+        skillTap[i].querySelector(".skillExplanation").textContent = skills[i].Explanation;
+        skillTap[i].querySelector(".Gold").textContent = skills[i].price;
     }
 }
 
