@@ -80,6 +80,7 @@ function gainXP(amount) {
         xp_max += 200;
         statsTextFc();
         HP_Fc(Max_HP)
+        MP_Fc(Max_MP)
 
         const LEVELUP_Text = document.querySelector("#LEVELUP");
         LEVELUP_Text.style.opacity = '1';
@@ -163,25 +164,37 @@ function SkillPopFcOn() {
 }
 
 //단축키
-document.addEventListener("keydown", () => {
+let isSkillKeyPressed = false;
+let gameEnd =false;
+document.addEventListener("keydown", (e) => {
+    if (gameEnd) return;
+    if (isSkillKeyPressed) return;
 
-    if(window.event.keyCode === 27){
+    if (e.key === "q" || e.key === "1") {
+        isSkillKeyPressed = true;
+        useSkill(skillslot[0]);
+    } else if (e.key === "w" || e.key === "2") {
+        isSkillKeyPressed = true;
+        useSkill(skillslot[1]);
+    } else if (e.key === "e" || e.key === "3") {
+        isSkillKeyPressed = true;
+        useSkill(skillslot[2]);
+    } else if (e.key === "r" || e.key === "4") {
+        isSkillKeyPressed = true;
+        useSkill(skillslot[3]);
+    } else if (e.key === "a") {
+        statsPopFcOn();
+    } else if (e.key === "s") {
+        SkillPopFcOn();
+    } else if (e.keyCode === 27) {
         statsPopFcOff();
         SkillPopFcOff();
-    }else if(window.event.key === "a"){
-        statsPopFcOn();
-    }else if(window.event.key === "s"){
-        SkillPopFcOn();
-    }else if(window.event.key ==="q" || window.event.key ==="1" ){
-        useSkill(skillslot[0])
-    }else if(window.event.key ==="w" || window.event.key ==="2" ){
-        useSkill(skillslot[1])
-    }else if(window.event.key ==="e" || window.event.key ==="3" ){
-        useSkill(skillslot[2])
-    }else if(window.event.key ==="r" || window.event.key ==="4" ){
-        useSkill(skillslot[3])
     }
-})
+});
+
+document.addEventListener("keyup", () => {
+    isSkillKeyPressed = false;
+});
 
 // 사이트 오픈시 실행
 document.addEventListener("DOMContentLoaded", () => {
@@ -303,7 +316,7 @@ const skills = [
     },
     {
         name: "강펀치",
-        price: 500,
+        price: 300,
         Explanation: "주먹에 모든 힘을 담아 강한 공격을 한다.",
         mana: 50,
         get damage() {
@@ -314,7 +327,7 @@ const skills = [
         name: "익스플로전 !",
         price: 1000,
         Explanation: "암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 익스플로전!",
-        mana: 500,
+        mana: 200,
         get damage() {
             return 100 + 50 * sk_st;
         },
@@ -334,6 +347,10 @@ function punchFc() {
 }
 punch.addEventListener("click", punchFc);
 
+//스킬이펙트
+
+
+
 //스킬사용
 const skillBtns = document.querySelectorAll(".skillButton");
 for (let i = 0; i < skillBtns.length; i++) {
@@ -349,7 +366,6 @@ for (let i = 0; i < skillBtns.length; i++) {
         }
     })
 }
-
 function useSkill(skill) {
     if (MP < skill.mana) {
         alert("MP가 부족합니다!");
@@ -357,11 +373,18 @@ function useSkill(skill) {
     }
 
     MP_Fc(-skill.mana);
+    let random = Math.random();
 
     if (skill.name === "힐") {
         HP_Fc(skill.damage * -1);
         alert(`${skill.name}을 사용하여 체력을 ${skill.damage} 회복했습니다.`);
-    }else {
+    }else if(skill.name === "파이어볼"){
+        enemy_HP_Fc(-skill.damage);
+        alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
+    }else if(skill.name === "아이스샷"){
+        enemy_HP_Fc(-skill.damage);
+        alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
+    }else{
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
     }
@@ -526,6 +549,7 @@ function gameOver() {
     const gameOverStageText = document.querySelector("#Die_stage")
     if (HP === 0) {
         gameOverText.style.display = 'block';
+        gameEnd = true;
         setTimeout(() => {
             gameOverText.classList.add("action");
             gameOverStageText.textContent = `STAGE ${stage}`
