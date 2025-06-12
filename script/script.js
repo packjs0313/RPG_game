@@ -3,7 +3,7 @@ let stats = {
     MP : 0,
     str : 0,
     sk : 0,
-    point : 0
+    point : 3
 }
 
 let gold = 100;
@@ -303,7 +303,8 @@ const skills = [
     {
         name: "파이어볼",
         price: 100,
-        Explanation: "작은 불덩일를 소환하는 기본마법. (공격력 : 15 + 스킬데미지 x 15)",
+        Explanation: `작은 불덩일를 소환하는 기본마법.
+        (공격력 : 15 + 스킬데미지 x 15)`,
         mana: 10,
         get damage() {
             return 15 + 15 * stats.sk;
@@ -312,7 +313,8 @@ const skills = [
     {
         name: "아이스샷",
         price: 300,
-        Explanation: "작은 고드름을 소환하는 기본마법 .10%확률로 적을 2턴 얼린다. <br>(공격력 : 15 + 스킬데미지 x 20)",
+        Explanation: `작은 고드름을 소환하는 기본마법. 10%확률로 적을 2턴 얼린다. 
+        (공격력 : 15 + 스킬데미지 x 20)`,
         mana: 20,
         get damage() {
             return 15 + 20 * stats.sk;
@@ -321,7 +323,8 @@ const skills = [
     {
         name: "힐",
         price: 300,
-        Explanation: "체력을 회복한다 <br>(회복량 : 10 + 스킬데미지 x20 )",
+        Explanation: `체력을 회복한다 
+        (회복량 : 10 + 스킬데미지 x20 )`,
         mana: 50,
         get damage() {
             return -10 - 20 * stats.sk;
