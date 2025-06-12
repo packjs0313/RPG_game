@@ -520,6 +520,7 @@ function enemyAction() {
 if(freeze > 0) {
         freeze--;
         document.querySelector(".you_char .char_img").classList.add("freeze")
+            endTurn(); // 다시 플레이어 턴으로
         return;
     }
     document.querySelector(".you_char .char_img").classList.remove("freeze")
