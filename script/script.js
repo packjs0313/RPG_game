@@ -1,8 +1,10 @@
-let HP_st = 0;
-let MP_st = 0;
-let str_st = 0;
-let sk_st = 0;
-let stPoint = 3;
+let stats = {
+    HP : 0,
+    MP : 0,
+    str : 0,
+    sk : 0,
+    point : 0
+}
 
 let gold = 100;
 // HP와 MP
@@ -76,7 +78,7 @@ function gainXP(amount) {
     if (xp >= xp_max) {
         xp -= xp_max;
         lv += 1;
-        stPoint += 3;
+        stats.point += 3;
         xp_max += 200;
         statsTextFc();
         HP_Fc(Max_HP)
@@ -107,47 +109,47 @@ const st_Sk_Text = document.querySelector("#Stats_popup li:nth-child(4) > span:f
 const stets_point_Text = document.querySelector("#skill_point");
 
 function statsTextFc() {
-    st_HP_Text.textContent = `HP : ${HP_st}`;
-    st_MP_Text.textContent = `MP : ${MP_st}`;
-    st_Str_Text.textContent = `공격력 : ${str_st}`;
-    st_Sk_Text.textContent = `스킬데미지 : ${sk_st}`;
-    stets_point_Text.textContent = `남은 스킬포인트 : ${stPoint}`;
+    st_HP_Text.textContent = `HP : ${stats.HP}`;
+    st_MP_Text.textContent = `MP : ${stats.MP}`;
+    st_Str_Text.textContent = `공격력 : ${stats.stats.str}`;
+    st_Sk_Text.textContent = `스킬데미지 : ${stats.sk}`;
+    stets_point_Text.textContent = `남은 스킬포인트 : ${stats.point}`;
 }
 
 //스탯 찍기
 function statsHP() {
-    if (stPoint > 0) {
-        HP_st++;
-        stPoint--;
+    if (stats.point > 0) {
+        stats.HP++;
+        stats.point--;
 
-        Max_HP = 100 + (HP_st * 50);
+        Max_HP = 100 + (stats.HP * 50);
         HP += 50;
         statsTextFc();
         MPHP_Percent();
     }
 }
 function statsMP() {
-    if (stPoint > 0) {
-        MP_st++;
-        stPoint--;
+    if (stats.point > 0) {
+        stats.MP++;
+        stats.point--;
 
-        Max_MP = 100 + (MP_st * 50);
+        Max_MP = 100 + (stats.MP * 50);
         MP += 50;
         statsTextFc();
         MPHP_Percent();
     }
 }
 function statsStr() {
-    if (stPoint > 0) {
-        str_st++;
-        stPoint--;
+    if (stats.point > 0) {
+        stats.str++;
+        stats.point--;
         statsTextFc();
     }
 }
 function statsSk() {
-    if (stPoint > 0) {
-        sk_st++;
-        stPoint--;
+    if (stats.point > 0) {
+        stats.sk++;
+        stats.point--;
         statsTextFc();
         SkillSlotText()
     }
@@ -302,7 +304,7 @@ const skills = [
         Explanation: "작은 불덩일를 소환하는 기본마법.",
         mana: 10,
         get damage() {
-            return 15 + 15 * sk_st;
+            return 15 + 15 * stats.sk;
         },
     },
     {
@@ -311,7 +313,7 @@ const skills = [
         Explanation: "작은 고드름을 소환하는 기본마법.",
         mana: 20,
         get damage() {
-            return 15 + 20 * sk_st;
+            return 15 + 20 * stats.sk;
         },
     },
     {
@@ -320,7 +322,7 @@ const skills = [
         Explanation: "체력을 회복한다",
         mana: 50,
         get damage() {
-            return -10 - 25 * sk_st;
+            return -10 - 25 * stats.sk;
         },
     },
     {
@@ -329,7 +331,7 @@ const skills = [
         Explanation: "주먹에 모든 힘을 담아 강한 공격을 한다.",
         mana: 50,
         get damage() {
-            return 20 + 30 * str_st;
+            return 20 + 30 * stats.str;
         },
     },
     {
@@ -338,7 +340,7 @@ const skills = [
         Explanation: "암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 익스플로전!",
         mana: 200,
         get damage() {
-            return 100 + 50 * sk_st;
+            return 100 + 50 * stats.sk;
         },
     },
 ];
@@ -346,8 +348,8 @@ const skills = [
 //일반공격
 const punch = document.querySelector("#normal_attack");
 function punchFc() {
-    enemy_HP_Fc(-10 + str_st * -10);
-    alert(`상대에게 ${-1 * (-10 + str_st * -10)}의 데미지를 입혔습니다`);
+    enemy_HP_Fc(-10 + stats.str * -10);
+    alert(`상대에게 ${-1 * (-10 + stats.str * -10)}의 데미지를 입혔습니다`);
     if (enemy_HP <= 0) {
         dieEnemy();
     } else {
