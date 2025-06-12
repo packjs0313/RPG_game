@@ -50,7 +50,7 @@ function enemyLvTextFc() {
     if (stage === 1) {
         randomLV = 1;
     } else {
-        const minLv = Math.max(1, Math.floor(stage * 0.8));
+        const minLv = Math.max(1, Math.floor(stage * 0.5));
         const maxLv = Math.floor(stage * 1.2);
         randomLV = Math.floor(Math.random() * (maxLv - minLv + 1)) + minLv;
     }
