@@ -159,7 +159,8 @@ function statsSk() {
 const Skill_pop = document.querySelector("#skills_popup");
 function SkillPopFcOff() {
     Skill_pop.classList.add("hide");
-    skillpopText();
+    setTimeout(skillpopText,100)
+    
 }
 function SkillPopFcOn() {
     Skill_pop.classList.remove("hide");
@@ -511,7 +512,7 @@ function endTurn() {
     }
 }
 
-
+set
 // 적턴
 function enemyAction() {
     if(freeze > 0) {
