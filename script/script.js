@@ -383,6 +383,7 @@ function useSkill(skill) {
 
     MP_Fc(-skill.mana);
     let random = Math.random();
+    
 
     if (skill.name === "힐") {
         HP_Fc(skill.damage * -1);
@@ -390,6 +391,7 @@ function useSkill(skill) {
     }else if(skill.name === "파이어볼"){
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
+        ``
     }else if(skill.name === "아이스샷"){
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
