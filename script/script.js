@@ -574,6 +574,16 @@ function gameOver() {
     }
 }
 
+// 다시하기 버튼 이벤트
+document.addEventListener("DOMContentLoaded", () => {
+    const retryBtn = document.getElementById("retryBtn");
+    if (retryBtn) {
+        retryBtn.onclick = () => {
+            location.reload();
+        };
+    }
+});
+
 // 우측 하단 행동 메시지 표시 함수
 function showActionMessage(msg) {
     const el = document.getElementById('action-message');
