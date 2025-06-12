@@ -311,7 +311,7 @@ const skills = [
     },
     {
         name: "아이스샷",
-        price: 100,
+        price: 300,
         Explanation: "작은 고드름을 소환하는 기본마법 .10%확률로 적을 2턴 얼린다. <br>(공격력 : 15 + 스킬데미지 x 20)",
         mana: 20,
         get damage() {
