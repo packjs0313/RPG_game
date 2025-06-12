@@ -159,6 +159,7 @@ function statsSk() {
 const Skill_pop = document.querySelector("#skills_popup");
 function SkillPopFcOff() {
     Skill_pop.classList.add("hide");
+    skillpopText();
 }
 function SkillPopFcOn() {
     Skill_pop.classList.remove("hide");
@@ -351,9 +352,9 @@ function skillpopText() {
     const skillTap = document.querySelectorAll("#skills_popup li");
     for (let i = 0; i < skillTap.length; i++) {
         skillTap[i].querySelector("h1").textContent = skills[i].name;
-        skillTap[i].querySelector(".skillMp").textContent = skills[i].mana;
+        skillTap[i].querySelector(".skillMp").textContent = skills[i].mana + "MP";
         skillTap[i].querySelector(".skillExplanation").textContent = skills[i].Explanation;
-        skillTap[i].querySelector(".Gold").textContent = skills[i].price;
+        skillTap[i].querySelector(".Gold").textContent = skills[i].price + "G";
     }
 }
 
