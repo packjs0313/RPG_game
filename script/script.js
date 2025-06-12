@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("rpg_game_username", game_name);
                 break;
             }
-            alert("닉네임은 1~10글자 사이여야 합니다.");
+            showActionMessage("닉네임은 1~10글자 사이여야 합니다.");
         }
     }
 
@@ -347,7 +347,7 @@ const skills = [
 const punch = document.querySelector("#normal_attack");
 function punchFc() {
     enemy_HP_Fc(-10 + str_st * -10);
-    alert(`상대에게 ${-1 * (-10 + str_st * -10)}의 데미지를 입혔습니다`);
+    showActionMessage(`상대에게 ${-1 * (-10 + str_st * -10)}의 데미지를 입혔습니다`);
     if (enemy_HP <= 0) {
         dieEnemy();
     } else {
@@ -371,33 +371,31 @@ for (let i = 0; i < skillBtns.length; i++) {
         if (skill) {
             useSkill(skill);
         } else {
-            alert("스킬이 장착되지 않았습니다.");
+            showActionMessage("스킬이 장착되지 않았습니다.");
         }
     })
 }
 function useSkill(skill) {
     if (MP < skill.mana) {
-        alert("MP가 부족합니다!");
+        showActionMessage("MP가 부족합니다!");
         return;
     }
 
     MP_Fc(-skill.mana);
     let random = Math.random();
-    
 
     if (skill.name === "힐") {
         HP_Fc(skill.damage * -1);
-        alert(`${skill.name}을 사용하여 체력을 ${skill.damage} 회복했습니다.`);
-    }else if(skill.name === "파이어볼"){
+        showActionMessage(`${skill.name}을 사용하여 체력을 ${skill.damage} 회복했습니다.`);
+    } else if (skill.name === "파이어볼") {
         enemy_HP_Fc(-skill.damage);
-        alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
-        ``
-    }else if(skill.name === "아이스샷"){
+        showActionMessage(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
+    } else if (skill.name === "아이스샷") {
         enemy_HP_Fc(-skill.damage);
-        alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
-    }else{
+        showActionMessage(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
+    } else {
         enemy_HP_Fc(-skill.damage);
-        alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
+        showActionMessage(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
     }
 
     if (enemy_HP <= 0) {
@@ -416,13 +414,13 @@ function buySkill(buttonElement, buyGold) {
     const skillName = buttonElement.parentElement.querySelector("h1").textContent;
     selectedSkill = skills.find(s => s.name === skillName);
 
-    if (buttonElement.classList.contains("bought")) {//classList.contains는 해당 객체에 class가 있는지 판단
+    if (buttonElement.classList.contains("bought")) {
         Skill_equipped.classList.remove("hide");
         return;
     }
     //구매
     if (gold >= buyGold) {
-        alert("스킬구매가 완료되었습니다.");
+        showActionMessage("스킬구매가 완료되었습니다.");
         buttonElement.textContent = `스킬 장착`;
         gold_Fc(-buyGold);
 
@@ -430,7 +428,7 @@ function buySkill(buttonElement, buyGold) {
         goldText.classList.add("hide");
         buttonElement.classList.add("bought");
     } else {
-        alert(`골드가 부족합니다 (필요골드 : ${buyGold - gold})`);
+        showActionMessage(`골드가 부족합니다 (필요골드 : ${buyGold - gold})`);
     }
 }
 
@@ -501,7 +499,7 @@ function endTurn() {
 function enemyAction() {
     const damage = enemy_lv * 5;
     HP_Fc(-damage);
-    alert(`적이 공격했습니다! ${damage} 데미지를 입었습니다.`);
+    showActionMessage(`적이 공격했습니다! ${damage} 데미지를 입었습니다.`);
     gameOver()
     endTurn(); // 다시 플레이어 턴으로
 }
@@ -566,4 +564,15 @@ function gameOver() {
             gameOverStageText.textContent = `STAGE ${stage}`
         }, 1);
     }
+}
+
+// 우측 하단 행동 메시지 표시 함수
+function showActionMessage(msg) {
+    const el = document.getElementById('action-message');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(showActionMessage._timer);
+    showActionMessage._timer = setTimeout(() => {
+        el.classList.remove('show');
+    }, 1800);
 }
