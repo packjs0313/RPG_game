@@ -312,7 +312,7 @@ const skills = [
     {
         name: "아이스샷",
         price: 100,
-        Explanation: "작은 고드름을 소환하는 기본마법 .10%확률로 적을 2턴 얼린다.(공격력 : 15 + 스킬데미지 x 20)",
+        Explanation: "작은 고드름을 소환하는 기본마법 .10%확률로 적을 2턴 얼린다. <br>(공격력 : 15 + 스킬데미지 x 20)",
         mana: 20,
         get damage() {
             return 15 + 20 * stats.sk;
@@ -321,7 +321,7 @@ const skills = [
     {
         name: "힐",
         price: 300,
-        Explanation: "체력을 회복한다 (회복량 : 10 + 스킬데미지 x20 )",
+        Explanation: "체력을 회복한다 <br>(회복량 : 10 + 스킬데미지 x20 )",
         mana: 50,
         get damage() {
             return -10 - 20 * stats.sk;
@@ -330,7 +330,7 @@ const skills = [
     {
         name: "강펀치",
         price: 300,
-        Explanation: "주먹에 모든 힘을 담아 강한 공격을 한다. (공격력 : 20 + 스킬데미지 x 30)",
+        Explanation: "주먹에 모든 힘을 담아 강한 공격을 한다. <br>(공격력 : 20 + 스킬데미지 x 30)",
         mana: 30,
         get damage() {
             return 20 + 30 * stats.str;
@@ -339,10 +339,10 @@ const skills = [
     {
         name: "익스플로전 !",
         price: 1000,
-        Explanation: "암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 익스플로전!",
+        Explanation: "암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 익스플로전! <br>(100 + 스킬데미지 x 75)",
         mana: 200,
         get damage() {
-            return 100 + 50 * stats.sk;
+            return 100 + 75 * stats.sk;
         },
     },
 ];
@@ -514,15 +514,15 @@ function endTurn() {
     }
 }
 
-set
+
 // 적턴
 function enemyAction() {
-    if(freeze > 0) {
+if(freeze > 0) {
         freeze--;
         document.querySelector(".you_char .char_img").classList.add("freeze")
         return;
     }
-    document.querySelector(".you_char .char_img").classList.classList.remove("freeze")
+    document.querySelector(".you_char .char_img").classList.remove("freeze")
     const damage = enemy_lv * 5;
     HP_Fc(-damage);
     alert(`적이 공격했습니다! ${damage} 데미지를 입었습니다.`);
