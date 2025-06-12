@@ -4,7 +4,9 @@
     list-style: none;
     box-sizing: border-box;
 }
-
+.freeze{
+    filter: hue-rotate(200deg) saturate(2);
+}
 .hide {
     display: none;
 }

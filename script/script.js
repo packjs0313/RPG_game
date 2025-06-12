@@ -164,7 +164,6 @@ function SkillPopFcOn() {
     Skill_pop.classList.remove("hide");
     GoldTextFc();
     skillpopText();
-
 }
 
 //단축키
@@ -410,7 +409,10 @@ function useSkill(skill) {
     }else if(skill.name === "아이스샷"){
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
-        if(random <= 0.1) freeze = 2;
+        if(random <= 0.1){
+            freeze = 2 
+            alert(`상대방이 얼었습니다!`);
+        };
     }else{
         enemy_HP_Fc(-skill.damage);
         alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
@@ -517,9 +519,10 @@ set
 function enemyAction() {
     if(freeze > 0) {
         freeze--;
+        document.querySelector(".you_char .char_img").classList.add("freeze")
         return;
     }
-
+    document.querySelector(".you_char .char_img").classList.classList.remove("freeze")
     const damage = enemy_lv * 5;
     HP_Fc(-damage);
     alert(`적이 공격했습니다! ${damage} 데미지를 입었습니다.`);
