@@ -45,15 +45,15 @@ function GoldTextFc() {
 }
 
 function enemyLvTextFc() {
-    let randomLV;
+    randomLV = 1;
 
     if (stage === 1) {
         randomLV = 1;
     } else {
-        const minLv = Math.max(1, Math.floor(stage * 0.5));
-        const maxLv = Math.floor(stage * 1.2);
-        randomLV = Math.floor(Math.random() * (maxLv - minLv + 1)) + minLv;
-    }
+        const minLv = Math.max(1, Math.floor(stage * 0.7)); 
+        const maxLv = Math.floor(stage * 0.9); 
+        randomLV = Math.floor(Math.random() * (maxLv - minLv + 1)) + minLv; 
+    } 
 
     enemy_lv = randomLV;
     enemy_Max_HP = 30 + (enemy_lv - 1) * 30;
