@@ -228,6 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
     MPHP_Percent();
     enemyLvTextFc();
     RandomMonster();
+    skillpopText()
     updateTurnUI();
 });
 
