@@ -303,8 +303,7 @@ const skills = [
     {
         name: "파이어볼",
         price: 100,
-        Explanation: `작은 불덩일를 소환하는 기본마법.
-        (공격력 : 15 + 스킬데미지 x 15)`,
+        Explanation: `작은 불덩일를 소환하는 기본마법. <br>(공격력 : 15 + 스킬데미지 x 15)`,
         mana: 10,
         get damage() {
             return 15 + 15 * stats.sk;
@@ -313,8 +312,7 @@ const skills = [
     {
         name: "아이스샷",
         price: 300,
-        Explanation: `작은 고드름을 소환하는 기본마법. 10%확률로 적을 2턴 얼린다. 
-        (공격력 : 15 + 스킬데미지 x 20)`,
+        Explanation: `작은 고드름을 소환하는 기본마법. 10%확률로 적을 2턴 얼린다. <br>(공격력 : 15 + 스킬데미지 x 20)`,
         mana: 20,
         get damage() {
             return 15 + 20 * stats.sk;
@@ -323,8 +321,7 @@ const skills = [
     {
         name: "힐",
         price: 300,
-        Explanation: `체력을 회복한다 
-        (회복량 : 10 + 스킬데미지 x20 )`,
+        Explanation: `체력을 회복한다. <br>(회복량 : 10 + 스킬데미지 x20 )`,
         mana: 50,
         get damage() {
             return -10 - 20 * stats.sk;
@@ -333,8 +330,7 @@ const skills = [
     {
         name: "강펀치",
         price: 300,
-        Explanation: `주먹에 모든 힘을 담아 강한 공격을 한다. 
-        (공격력 : 20 + 스킬데미지 x 30)`,
+        Explanation: `주먹에 모든 힘을 담아 강한 공격을 한다. <br>(공격력 : 20 + 스킬데미지 x 30)`,
         mana: 30,
         get damage() {
             return 20 + 30 * stats.str;
@@ -343,8 +339,7 @@ const skills = [
     {
         name: "익스플로전 !",
         price: 1000,
-        Explanation: `암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 익스플로전!
-        (100 + 스킬데미지 x 75)`,
+        Explanation: `암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라<br> 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라<br> 익스플로전! <br>(100 + 스킬데미지 x 75)`,
         mana: 200,
         get damage() {
             return 100 + 75 * stats.sk;
@@ -356,10 +351,10 @@ let freeze = 0;
 function skillpopText() {
     const skillTap = document.querySelectorAll("#skills_popup li");
     for (let i = 0; i < skillTap.length; i++) {
-        skillTap[i].querySelector("h1").textContent = skills[i].name;
-        skillTap[i].querySelector(".skillMp").textContent = skills[i].mana + "MP";
-        skillTap[i].querySelector(".skillExplanation").textContent = skills[i].Explanation;
-        skillTap[i].querySelector(".Gold").textContent = skills[i].price + "G";
+        skillTap[i].querySelector("h1").innerHTML = skills[i].name;
+        skillTap[i].querySelector(".skillMp").innerHTML = skills[i].mana + "MP";
+        skillTap[i].querySelector(".skillExplanation").innerHTML = skills[i].Explanation;
+        skillTap[i].querySelector(".Gold").innerHTML = skills[i].price + "G";
     }
 }
 

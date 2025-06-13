@@ -5,7 +5,6 @@
     box-sizing: border-box;
     user-select: none;
 }
-}
 .freeze{
     filter: hue-rotate(200deg) saturate(2);
 }
