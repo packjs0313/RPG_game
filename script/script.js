@@ -339,7 +339,7 @@ const skills = [
     {
         name: "익스플로전 !",
         price: 1000,
-        Explanation: `암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라<br> 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라<br> 익스플로전! <br>(100 + 스킬데미지 x 75)`,
+        Explanation: `암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라<br> 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라<br> 익스플로전! (100 + 스킬데미지 x 75)`,
         mana: 200,
         get damage() {
             return 100 + 75 * stats.sk;
@@ -520,10 +520,12 @@ function enemyAction() {
 if(freeze > 0) {
         freeze--;
         document.querySelector(".you_char .char_img").classList.add("freeze")
+        document.querySelector(".you_char .LV").classList.add("freezeText")
             endTurn(); // 다시 플레이어 턴으로
         return;
     }
     document.querySelector(".you_char .char_img").classList.remove("freeze")
+    document.querySelector(".you_char .LV").classList.remove("freezeText")
     const damage = enemy_lv * 5;
     HP_Fc(-damage);
     alert(`적이 공격했습니다! ${damage} 데미지를 입었습니다.`);
@@ -544,6 +546,9 @@ function dieEnemy() {
             GoldTextFc();
             MPHP_Percent();
             MP_Fc(Max_MP / 5);
+            document.querySelector(".you_char .char_img").classList.remove("freeze")
+            document.querySelector(".you_char .LV").classList.remove("freezeText")
+            freeze = 0;
             turn = "player";
         },500)
     }

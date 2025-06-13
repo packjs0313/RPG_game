@@ -6,7 +6,19 @@
     user-select: none;
 }
 .freeze{
-    filter: hue-rotate(200deg) saturate(2);
+    filter: grayscale(1) sepia(1) hue-rotate(190deg) saturate(6);
+}
+.freezeText::after{
+    content: "얼음";
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 7px;
+    color: #fff;
+    background: #4444ff;
+    border-radius: 13.5px;
+    position: relative;
+    top: -12px;
+    left : 2px;
 }
 .hide {
     display: none;
