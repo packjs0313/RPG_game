@@ -1,0 +1,14 @@
+[
+    {
+        "name": "슬라임",
+        "img": "img/enemy/slime.png"
+    },
+    {
+        "name": "뱀",
+        "img": "img/enemy/snake.png"
+    },
+    {
+        "name": "늑대",
+        "img": "img/enemy/wolf.png"
+    }
+]

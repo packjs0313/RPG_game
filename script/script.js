@@ -1,8 +1,10 @@
-let HP_st = 0;
-let MP_st = 0;
-let str_st = 0;
-let sk_st = 0;
-let stPoint = 3;
+let stats = {
+    HP: 0,
+    MP: 0,
+    str: 0,
+    sk: 0,
+    point: 3,
+};
 
 let gold = 100;
 // HP와 MP
@@ -43,13 +45,13 @@ function GoldTextFc() {
 }
 
 function enemyLvTextFc() {
-    let randomLV;
+    randomLV = 1;
 
     if (stage === 1) {
         randomLV = 1;
     } else {
-        const minLv = Math.max(1, Math.floor(stage * 0.8));
-        const maxLv = Math.floor(stage * 1.2);
+        const minLv = Math.max(1, Math.floor(stage * 0.7));
+        const maxLv = Math.floor(stage * 0.9);
         randomLV = Math.floor(Math.random() * (maxLv - minLv + 1)) + minLv;
     }
 
@@ -78,7 +80,7 @@ function gainXP(amount) {
     if (xp >= xp_max) {
         xp -= xp_max;
         lv += 1;
-        stPoint += 3;
+        stats.point += 3;
         xp_max += 200;
         statsTextFc();
         HP_Fc(Max_HP);
@@ -117,47 +119,47 @@ const st_Sk_Text = document.querySelector(
 const stets_point_Text = document.querySelector('#skill_point');
 
 function statsTextFc() {
-    st_HP_Text.textContent = `HP : ${HP_st}`;
-    st_MP_Text.textContent = `MP : ${MP_st}`;
-    st_Str_Text.textContent = `공격력 : ${str_st}`;
-    st_Sk_Text.textContent = `스킬데미지 : ${sk_st}`;
-    stets_point_Text.textContent = `남은 스킬포인트 : ${stPoint}`;
+    st_HP_Text.textContent = `HP : ${stats.HP}`;
+    st_MP_Text.textContent = `MP : ${stats.MP}`;
+    st_Str_Text.textContent = `공격력 : ${stats.str}`;
+    st_Sk_Text.textContent = `스킬데미지 : ${stats.sk}`;
+    stets_point_Text.textContent = `남은 스킬포인트 : ${stats.point}`;
 }
 
 //스탯 찍기
 function statsHP() {
-    if (stPoint > 0) {
-        HP_st++;
-        stPoint--;
+    if (stats.point > 0) {
+        stats.HP++;
+        stats.point--;
 
-        Max_HP = 100 + HP_st * 50;
+        Max_HP = 100 + stats.HP * 50;
         HP += 50;
         statsTextFc();
         MPHP_Percent();
     }
 }
 function statsMP() {
-    if (stPoint > 0) {
-        MP_st++;
-        stPoint--;
+    if (stats.point > 0) {
+        stats.MP++;
+        stats.point--;
 
-        Max_MP = 100 + MP_st * 50;
+        Max_MP = 100 + stats.MP * 50;
         MP += 50;
         statsTextFc();
         MPHP_Percent();
     }
 }
 function statsStr() {
-    if (stPoint > 0) {
-        str_st++;
-        stPoint--;
+    if (stats.point > 0) {
+        stats.str++;
+        stats.point--;
         statsTextFc();
     }
 }
 function statsSk() {
-    if (stPoint > 0) {
-        sk_st++;
-        stPoint--;
+    if (stats.point > 0) {
+        stats.sk++;
+        stats.point--;
         statsTextFc();
         SkillSlotText();
     }
@@ -171,6 +173,7 @@ function SkillPopFcOff() {
 function SkillPopFcOn() {
     Skill_pop.classList.remove('hide');
     GoldTextFc();
+    skillpopText();
 }
 
 //단축키
@@ -207,7 +210,7 @@ document.addEventListener('keyup', () => {
 });
 
 // 사이트 오픈시 실행
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const name_text = document.querySelector('#my_name');
 
     // 로컬 스토리지에서 사용자 이름 가져오기
@@ -230,12 +233,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     name_text.textContent = game_name;
 
+    await loadEnemyData();
     text();
     GoldTextFc();
     statsTextFc();
     MPHP_Percent();
     enemyLvTextFc();
     RandomMonster();
+    skillpopText();
     updateTurnUI();
 });
 
@@ -309,56 +314,67 @@ const skills = [
     {
         name: '파이어볼',
         price: 100,
-        Explanation: '작은 불덩일를 소환하는 기본마법.',
+        Explanation: `작은 불덩일를 소환하는 기본마법. <br>(공격력 : 15 + 스킬데미지 x 15)`,
         mana: 10,
         get damage() {
-            return 15 + 15 * sk_st;
+            return 15 + 15 * stats.sk;
         },
     },
     {
         name: '아이스샷',
-        price: 100,
-        Explanation: '작은 고드름을 소환하는 기본마법.',
+        price: 300,
+        Explanation: `작은 고드름을 소환하는 기본마법. 10%확률로 적을 2턴 얼린다. <br>(공격력 : 15 + 스킬데미지 x 20)`,
         mana: 20,
         get damage() {
-            return 15 + 20 * sk_st;
+            return 15 + 20 * stats.sk;
         },
     },
     {
         name: '힐',
         price: 300,
-        Explanation: '체력을 회복한다',
+        Explanation: `체력을 회복한다. <br>(회복량 : 10 + 스킬데미지 x20 )`,
         mana: 50,
         get damage() {
-            return -10 - 25 * sk_st;
+            return -10 - 20 * stats.sk;
         },
     },
     {
         name: '강펀치',
         price: 300,
-        Explanation: '주먹에 모든 힘을 담아 강한 공격을 한다.',
-        mana: 50,
+        Explanation: `주먹에 모든 힘을 담아 강한 공격을 한다. <br>(공격력 : 20 + 스킬데미지 x 30)`,
+        mana: 30,
         get damage() {
-            return 20 + 30 * str_st;
+            return 20 + 30 * stats.str;
         },
     },
     {
         name: '익스플로전 !',
         price: 1000,
-        Explanation:
-            '암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 익스플로전!',
+        Explanation: `암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라<br> 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라<br> 익스플로전! (100 + 스킬데미지 x 75)`,
         mana: 200,
         get damage() {
-            return 100 + 50 * sk_st;
+            return 100 + 75 * stats.sk;
         },
     },
 ];
+let freeze = 0;
+
+function skillpopText() {
+    const skillTap = document.querySelectorAll('#skills_popup li');
+    for (let i = 0; i < skillTap.length; i++) {
+        skillTap[i].querySelector('h1').innerHTML = skills[i].name;
+        skillTap[i].querySelector('.skillMp').innerHTML = skills[i].mana + 'MP';
+        skillTap[i].querySelector('.skillExplanation').innerHTML =
+            skills[i].Explanation;
+        skillTap[i].querySelector('.Gold').innerHTML = skills[i].price + 'G';
+    }
+}
 
 //일반공격
 const punch = document.querySelector('#normal_attack');
 function punchFc() {
-    enemy_HP_Fc(-10 + str_st * -10);
-    alert(`상대에게 ${-1 * (-10 + str_st * -10)}의 데미지를 입혔습니다`);
+    enemy_HP_Fc(-10 + stats.str * -10);
+    alert(`상대에게 ${-1 * (-10 + stats.str * -10)}의 데미지를 입혔습니다`);
     if (enemy_HP <= 0) {
         dieEnemy();
     } else {
@@ -395,18 +411,21 @@ function useSkill(skill) {
 
     if (skill.name === '힐') {
         HP_Fc(skill.damage * -1);
-        alert(`${skill.name}을 사용하여 체력을 ${skill.damage} 회복했습니다.`);
+        alert(`${skill.name}을 사용하여 체력을 ${-skill.damage} 회복했습니다.`);
     } else if (skill.name === '파이어볼') {
         enemy_HP_Fc(-skill.damage);
         alert(
             `${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`
         );
-        ``;
     } else if (skill.name === '아이스샷') {
         enemy_HP_Fc(-skill.damage);
         alert(
             `${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`
         );
+        if (random <= 0.1) {
+            freeze = 2;
+            alert(`상대방이 얼었습니다!`);
+        }
     } else {
         enemy_HP_Fc(-skill.damage);
         alert(
@@ -519,6 +538,15 @@ function endTurn() {
 
 // 적턴
 function enemyAction() {
+    if (freeze > 0) {
+        freeze--;
+        document.querySelector('.you_char .char_img').classList.add('freeze');
+        document.querySelector('.you_char .LV').classList.add('freezeText');
+        endTurn(); // 다시 플레이어 턴으로
+        return;
+    }
+    document.querySelector('.you_char .char_img').classList.remove('freeze');
+    document.querySelector('.you_char .LV').classList.remove('freezeText');
     const damage = enemy_lv * 5;
     HP_Fc(-damage);
     alert(`적이 공격했습니다! ${damage} 데미지를 입었습니다.`);
@@ -539,35 +567,49 @@ function dieEnemy() {
             GoldTextFc();
             MPHP_Percent();
             MP_Fc(Max_MP / 5);
+            document
+                .querySelector('.you_char .char_img')
+                .classList.remove('freeze');
+            document
+                .querySelector('.you_char .LV')
+                .classList.remove('freezeText');
+            freeze = 0;
             turn = 'player';
         }, 500);
     }
 }
-let enemy_char = [
-    {
-        name: '슬라임',
-        img: 'img/slime.png',
-    },
-    {
-        name: '뱀',
-        img: 'img/snake.png',
-    },
-    {
-        name: '늑대',
-        img: 'img/wolf.png',
-    },
-];
-//적 캐릭터 선택
-function RandomMonster() {
-    const randomIndex = Math.floor(Math.random() * enemy_char.length);
-    const selectedEnemy = enemy_char[randomIndex];
-    const enemy_name_element = document.querySelector('.you_char .name');
-    const enemy_img_element = document.querySelector('.you_char .char_img');
+let enemy_char = [];
 
-    enemy_name_element.textContent = selectedEnemy.name;
-    enemy_img_element.style.backgroundImage = `url(${selectedEnemy.img})`;
+async function loadEnemyData() {
+    try {
+        const response = await fetch('data/enemy_char.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        enemy_char = await response.json();
+    } catch (error) {
+        console.error('Failed to load enemy characters:', error);
+        enemy_char = [{ name: '슬라임', img: 'img/enemy/slime.png' }];
+    }
 }
 
+//적 캐릭터 선택
+function RandomMonster() {
+    let random = Math.random();
+    let enemy_name = document.querySelector('.you_char .name');
+    let enemy_img = document.querySelector('.you_char .char_img');
+
+    if (random <= 0.4) {
+        enemy_name.textContent = enemy_char[0].name;
+        enemy_img.style.backgroundImage = ` url(${enemy_char[0].img})`;
+    } else if (random <= 0.7) {
+        enemy_name.textContent = enemy_char[1].name;
+        enemy_img.style.backgroundImage = ` url(${enemy_char[1].img})`;
+    } else if (random <= 1) {
+        enemy_name.textContent = enemy_char[2].name;
+        enemy_img.style.backgroundImage = ` url(${enemy_char[2].img})`;
+    }
+}
 //게임오버
 function gameOver() {
     const gameOverText = document.querySelector('#gameOver');
