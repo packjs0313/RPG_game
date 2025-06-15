@@ -23,20 +23,20 @@ let enemy_MP = enemy_Max_MP;
 let enemy_lv = 1;
 
 // 레벨 텍스트 갱신 함수
-const Lv_text = document.querySelector("#LV");
-const Xp_text = document.querySelector("#xp_me");
-const name_text = document.querySelector("#my_name");
-const Enemy_Lv_text = document.querySelector("#LV_enemy");
-const stageText = document.querySelector("#stage");
+const Lv_text = document.querySelector('#LV');
+const Xp_text = document.querySelector('#xp_me');
+const name_text = document.querySelector('#my_name');
+const Enemy_Lv_text = document.querySelector('#LV_enemy');
+const stageText = document.querySelector('#stage');
 
 function text() {
     Lv_text.textContent = `LV.${lv}`;
     Xp_text.textContent = `(${xp}/${xp_max})`;
-    stageText.textContent = `STAGE ${stage}`
+    stageText.textContent = `STAGE ${stage}`;
 }
 function GoldTextFc() {
-    const goldText = document.querySelector("#GoldText");
-    const goldText2 = document.querySelector("#GoldText2");
+    const goldText = document.querySelector('#GoldText');
+    const goldText2 = document.querySelector('#GoldText2');
 
     goldText.textContent = `소지금 : ${gold}`;
     goldText2.textContent = `소지금 : ${gold}`;
@@ -61,12 +61,14 @@ function enemyLvTextFc() {
 }
 function gainXPFromEnemy() {
     const baseXP = 50;
-    const xpGain = Math.floor(baseXP * (enemy_lv / lv)*1.5);
+    const xpGain = Math.floor(baseXP * (enemy_lv / lv) * 1.5);
     gainXP(xpGain);
 }
 function goldFromEnemy() {
     const baseGold = 20;
-    const goldGain = Math.floor(baseGold * (enemy_lv / lv) + Math.random() * 10);
+    const goldGain = Math.floor(
+        baseGold * (enemy_lv / lv) + Math.random() * 10
+    );
     gold_Fc(goldGain);
 }
 
@@ -79,10 +81,10 @@ function gainXP(amount) {
         stPoint += 3;
         xp_max += 200;
         statsTextFc();
-        HP_Fc(Max_HP)
-        MP_Fc(Max_MP)
+        HP_Fc(Max_HP);
+        MP_Fc(Max_MP);
 
-        const LEVELUP_Text = document.querySelector("#LEVELUP");
+        const LEVELUP_Text = document.querySelector('#LEVELUP');
         LEVELUP_Text.style.opacity = '1';
         setTimeout(() => {
             LEVELUP_Text.style.opacity = '0';
@@ -92,19 +94,27 @@ function gainXP(amount) {
 }
 
 //스탯 팝업
-const st_pop = document.querySelector("#Stats_popup");
+const st_pop = document.querySelector('#Stats_popup');
 function statsPopFcOff() {
-    st_pop.classList.add("hide");
+    st_pop.classList.add('hide');
 }
 function statsPopFcOn() {
-    st_pop.classList.remove("hide");
+    st_pop.classList.remove('hide');
 }
 
-const st_HP_Text = document.querySelector("#Stats_popup li:nth-child(1) > span:first-child");
-const st_MP_Text = document.querySelector("#Stats_popup li:nth-child(2) > span:first-child");
-const st_Str_Text = document.querySelector("#Stats_popup li:nth-child(3) > span:first-child");
-const st_Sk_Text = document.querySelector("#Stats_popup li:nth-child(4) > span:first-child");
-const stets_point_Text = document.querySelector("#skill_point");
+const st_HP_Text = document.querySelector(
+    '#Stats_popup li:nth-child(1) > span:first-child'
+);
+const st_MP_Text = document.querySelector(
+    '#Stats_popup li:nth-child(2) > span:first-child'
+);
+const st_Str_Text = document.querySelector(
+    '#Stats_popup li:nth-child(3) > span:first-child'
+);
+const st_Sk_Text = document.querySelector(
+    '#Stats_popup li:nth-child(4) > span:first-child'
+);
+const stets_point_Text = document.querySelector('#skill_point');
 
 function statsTextFc() {
     st_HP_Text.textContent = `HP : ${HP_st}`;
@@ -120,7 +130,7 @@ function statsHP() {
         HP_st++;
         stPoint--;
 
-        Max_HP = 100 + (HP_st * 50);
+        Max_HP = 100 + HP_st * 50;
         HP += 50;
         statsTextFc();
         MPHP_Percent();
@@ -131,7 +141,7 @@ function statsMP() {
         MP_st++;
         stPoint--;
 
-        Max_MP = 100 + (MP_st * 50);
+        Max_MP = 100 + MP_st * 50;
         MP += 50;
         statsTextFc();
         MPHP_Percent();
@@ -149,42 +159,42 @@ function statsSk() {
         sk_st++;
         stPoint--;
         statsTextFc();
-        SkillSlotText()
+        SkillSlotText();
     }
 }
 
 //스킬 팝업
-const Skill_pop = document.querySelector("#skills_popup");
+const Skill_pop = document.querySelector('#skills_popup');
 function SkillPopFcOff() {
-    Skill_pop.classList.add("hide");
+    Skill_pop.classList.add('hide');
 }
 function SkillPopFcOn() {
-    Skill_pop.classList.remove("hide");
+    Skill_pop.classList.remove('hide');
     GoldTextFc();
 }
 
 //단축키
 let isSkillKeyPressed = false;
-let gameEnd =false;
-document.addEventListener("keydown", (e) => {
+let gameEnd = false;
+document.addEventListener('keydown', (e) => {
     if (gameEnd) return;
     if (isSkillKeyPressed) return;
 
-    if (e.key === "q" || e.key === "1") {
+    if (e.key === 'q' || e.key === '1') {
         isSkillKeyPressed = true;
         useSkill(skillslot[0]);
-    } else if (e.key === "w" || e.key === "2") {
+    } else if (e.key === 'w' || e.key === '2') {
         isSkillKeyPressed = true;
         useSkill(skillslot[1]);
-    } else if (e.key === "e" || e.key === "3") {
+    } else if (e.key === 'e' || e.key === '3') {
         isSkillKeyPressed = true;
         useSkill(skillslot[2]);
-    } else if (e.key === "r" || e.key === "4") {
+    } else if (e.key === 'r' || e.key === '4') {
         isSkillKeyPressed = true;
         useSkill(skillslot[3]);
-    } else if (e.key === "a") {
+    } else if (e.key === 'a') {
         statsPopFcOn();
-    } else if (e.key === "s") {
+    } else if (e.key === 's') {
         SkillPopFcOn();
     } else if (e.keyCode === 27) {
         statsPopFcOff();
@@ -192,29 +202,29 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-document.addEventListener("keyup", () => {
+document.addEventListener('keyup', () => {
     isSkillKeyPressed = false;
 });
 
 // 사이트 오픈시 실행
-document.addEventListener("DOMContentLoaded", () => {
-    const name_text = document.querySelector("#my_name");
+document.addEventListener('DOMContentLoaded', () => {
+    const name_text = document.querySelector('#my_name');
 
     // 로컬 스토리지에서 사용자 이름 가져오기
-    let game_name = localStorage.getItem("rpg_game_username");
+    let game_name = localStorage.getItem('rpg_game_username');
 
     // 저장된 이름이 없으면 새로 입력받기
     if (!game_name) {
         while (true) {
-            game_name = prompt("닉네임을 입력하세요 (최대 10글자)") || "";
+            game_name = prompt('닉네임을 입력하세요 (최대 10글자)') || '';
             game_name = game_name.trim();
 
             if (game_name && game_name.length <= 10) {
                 // 유효한 닉네임이면 로컬 스토리지에 저장
-                localStorage.setItem("rpg_game_username", game_name);
+                localStorage.setItem('rpg_game_username', game_name);
                 break;
             }
-            alert("닉네임은 1~10글자 사이여야 합니다.");
+            alert('닉네임은 1~10글자 사이여야 합니다.');
         }
     }
 
@@ -230,21 +240,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //HP, MP바 증감
-const my_HP_fill = document.querySelector(".me_char .HP_bar .bar_fill");
-const my_MP_fill = document.querySelector(".me_char .MP_bar .bar_fill");
+const my_HP_fill = document.querySelector('.me_char .HP_bar .bar_fill');
+const my_MP_fill = document.querySelector('.me_char .MP_bar .bar_fill');
 
-const my_HP_text = document.querySelector(".me_char .HP_bar .bar_text");
-const my_MP_text = document.querySelector(".me_char .MP_bar .bar_text");
+const my_HP_text = document.querySelector('.me_char .HP_bar .bar_text');
+const my_MP_text = document.querySelector('.me_char .MP_bar .bar_text');
 
-const enemy_HP_fill = document.querySelector(".you_char .HP_bar .bar_fill");
-const enemy_MP_fill = document.querySelector(".you_char .MP_bar .bar_fill");
+const enemy_HP_fill = document.querySelector('.you_char .HP_bar .bar_fill');
+const enemy_MP_fill = document.querySelector('.you_char .MP_bar .bar_fill');
 
-const enemy_HP_text = document.querySelector(".you_char .HP_bar .bar_text");
-const enemy_MP_text = document.querySelector(".you_char .MP_bar .bar_text");
+const enemy_HP_text = document.querySelector('.you_char .HP_bar .bar_text');
+const enemy_MP_text = document.querySelector('.you_char .MP_bar .bar_text');
 
 function MPHP_Percent() {
-    let my_HP_percent = HP / Max_HP * 100;
-    let my_MP_percent = MP / Max_MP * 100;
+    let my_HP_percent = (HP / Max_HP) * 100;
+    let my_MP_percent = (MP / Max_MP) * 100;
 
     my_HP_fill.style.width = `${my_HP_percent}%`;
     my_MP_fill.style.width = `${my_MP_percent}%`;
@@ -252,8 +262,8 @@ function MPHP_Percent() {
     my_HP_text.textContent = `${HP}/${Max_HP}`;
     my_MP_text.textContent = `${MP}/${Max_MP}`;
 
-    let enemy_HP_percent = enemy_HP / enemy_Max_HP * 100;
-    let enemy_MP_percent = enemy_MP / enemy_Max_MP * 100;
+    let enemy_HP_percent = (enemy_HP / enemy_Max_HP) * 100;
+    let enemy_MP_percent = (enemy_MP / enemy_Max_MP) * 100;
 
     enemy_HP_fill.style.width = `${enemy_HP_percent}%`;
     enemy_MP_fill.style.width = `${enemy_MP_percent}%`;
@@ -297,45 +307,46 @@ function gold_Fc(a) {
 //스킬 목록
 const skills = [
     {
-        name: "파이어볼",
+        name: '파이어볼',
         price: 100,
-        Explanation: "작은 불덩일를 소환하는 기본마법.",
+        Explanation: '작은 불덩일를 소환하는 기본마법.',
         mana: 10,
         get damage() {
             return 15 + 15 * sk_st;
         },
     },
     {
-        name: "아이스샷",
+        name: '아이스샷',
         price: 100,
-        Explanation: "작은 고드름을 소환하는 기본마법.",
+        Explanation: '작은 고드름을 소환하는 기본마법.',
         mana: 20,
         get damage() {
             return 15 + 20 * sk_st;
         },
     },
     {
-        name: "힐",
+        name: '힐',
         price: 300,
-        Explanation: "체력을 회복한다",
+        Explanation: '체력을 회복한다',
         mana: 50,
         get damage() {
             return -10 - 25 * sk_st;
         },
     },
     {
-        name: "강펀치",
+        name: '강펀치',
         price: 300,
-        Explanation: "주먹에 모든 힘을 담아 강한 공격을 한다.",
+        Explanation: '주먹에 모든 힘을 담아 강한 공격을 한다.',
         mana: 50,
         get damage() {
             return 20 + 30 * str_st;
         },
     },
     {
-        name: "익스플로전 !",
+        name: '익스플로전 !',
         price: 1000,
-        Explanation: "암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 익스플로전!",
+        Explanation:
+            '암흑보다 검고, 어둠보다 어두운 칠흑에, 나의 진홍이 섞이기를 바라노라 각성의 때가 왔으니 무류의 경계에 떨어진 이치여 무업의 일그러짐이 되어 나타나라 익스플로전!',
         mana: 200,
         get damage() {
             return 100 + 50 * sk_st;
@@ -344,7 +355,7 @@ const skills = [
 ];
 
 //일반공격
-const punch = document.querySelector("#normal_attack");
+const punch = document.querySelector('#normal_attack');
 function punchFc() {
     enemy_HP_Fc(-10 + str_st * -10);
     alert(`상대에게 ${-1 * (-10 + str_st * -10)}의 데미지를 입혔습니다`);
@@ -354,50 +365,53 @@ function punchFc() {
         endTurn(); // 적이 살아 있으면 턴 넘김
     }
 }
-punch.addEventListener("click", punchFc);
+punch.addEventListener('click', punchFc);
 
 //스킬이펙트
 
-
-
 //스킬사용
-const skillBtns = document.querySelectorAll(".skillButton");
+const skillBtns = document.querySelectorAll('.skillButton');
 for (let i = 0; i < skillBtns.length; i++) {
     const btns = skillBtns[i];
     btns.addEventListener('click', () => {
-        const skillName = btns.querySelector(".skillName");
+        const skillName = btns.querySelector('.skillName');
 
-        const skill = skills.find(s => s.name === skillName.textContent);
+        const skill = skills.find((s) => s.name === skillName.textContent);
         if (skill) {
             useSkill(skill);
         } else {
-            alert("스킬이 장착되지 않았습니다.");
+            alert('스킬이 장착되지 않았습니다.');
         }
-    })
+    });
 }
 function useSkill(skill) {
     if (MP < skill.mana) {
-        alert("MP가 부족합니다!");
+        alert('MP가 부족합니다!');
         return;
     }
 
     MP_Fc(-skill.mana);
     let random = Math.random();
-    
 
-    if (skill.name === "힐") {
+    if (skill.name === '힐') {
         HP_Fc(skill.damage * -1);
         alert(`${skill.name}을 사용하여 체력을 ${skill.damage} 회복했습니다.`);
-    }else if(skill.name === "파이어볼"){
+    } else if (skill.name === '파이어볼') {
         enemy_HP_Fc(-skill.damage);
-        alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
-        ``
-    }else if(skill.name === "아이스샷"){
+        alert(
+            `${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`
+        );
+        ``;
+    } else if (skill.name === '아이스샷') {
         enemy_HP_Fc(-skill.damage);
-        alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
-    }else{
+        alert(
+            `${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`
+        );
+    } else {
         enemy_HP_Fc(-skill.damage);
-        alert(`${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`);
+        alert(
+            `${skill.name}을 사용하여 적에게 ${skill.damage} 데미지를 입혔습니다.`
+        );
     }
 
     if (enemy_HP <= 0) {
@@ -407,39 +421,40 @@ function useSkill(skill) {
     }
 }
 
-
 //스킬구매
-const Skill_equipped = document.querySelector(".SkillSlot");
-let selectedSkill = "";
+const Skill_equipped = document.querySelector('.SkillSlot');
+let selectedSkill = '';
 
 function buySkill(buttonElement, buyGold) {
-    const skillName = buttonElement.parentElement.querySelector("h1").textContent;
-    selectedSkill = skills.find(s => s.name === skillName);
+    const skillName =
+        buttonElement.parentElement.querySelector('h1').textContent;
+    selectedSkill = skills.find((s) => s.name === skillName);
 
-    if (buttonElement.classList.contains("bought")) {//classList.contains는 해당 객체에 class가 있는지 판단
-        Skill_equipped.classList.remove("hide");
+    if (buttonElement.classList.contains('bought')) {
+        //classList.contains는 해당 객체에 class가 있는지 판단
+        Skill_equipped.classList.remove('hide');
         return;
     }
     //구매
     if (gold >= buyGold) {
-        alert("스킬구매가 완료되었습니다.");
+        alert('스킬구매가 완료되었습니다.');
         buttonElement.textContent = `스킬 장착`;
         gold_Fc(-buyGold);
 
-        const goldText = buttonElement.parentElement.querySelector(".Gold");
-        goldText.classList.add("hide");
-        buttonElement.classList.add("bought");
+        const goldText = buttonElement.parentElement.querySelector('.Gold');
+        goldText.classList.add('hide');
+        buttonElement.classList.add('bought');
     } else {
         alert(`골드가 부족합니다 (필요골드 : ${buyGold - gold})`);
     }
 }
 
 const skillslot = [null, null, null, null];
-let Skill_Slot_index = "";
+let Skill_Slot_index = '';
 //슬롯 index감지
 const SkillSlot = document.querySelector('.SkillSlot');
 function skillSlotIndex(index) {
-    SkillSlot.classList.add("hide");
+    SkillSlot.classList.add('hide');
     Skill_Slot_index = index;
 
     skillEquipped(Skill_Slot_index, selectedSkill);
@@ -447,18 +462,22 @@ function skillSlotIndex(index) {
 //스킬 장착
 function skillEquipped(slot, skill) {
     skillslot[slot] = skill;
-    SkillSlotText()
+    SkillSlotText();
     const slotInSkill = document.querySelector(`#sk${slot + 1}`);
 
-    slotInSkill.classList.add("active")
+    slotInSkill.classList.add('active');
 }
 function SkillSlotText() {
     for (let i = 0; i < skillslot.length; i++) {
         const skill = skillslot[i];
         if (!skill) continue;
 
-        const slotInSkillName = document.querySelector(`#sk${i + 1} .skillName`);
-        const slotInSkilldamage = document.querySelector(`#sk${i + 1} .skilldamage`);
+        const slotInSkillName = document.querySelector(
+            `#sk${i + 1} .skillName`
+        );
+        const slotInSkilldamage = document.querySelector(
+            `#sk${i + 1} .skilldamage`
+        );
         const slotInSkillMP = document.querySelector(`#sk${i + 1}>div>span`);
 
         slotInSkillName.textContent = skill.name;
@@ -468,41 +487,42 @@ function SkillSlotText() {
 }
 //턴제
 let stage = 1;
-let turn = "player";
+let turn = 'player';
 // 턴 상태에 따라 버튼 제어
 function updateTurnUI() {
-    const attackButtons = document.querySelectorAll(".skillButton, #normal_attack");
+    const attackButtons = document.querySelectorAll(
+        '.skillButton, #normal_attack'
+    );
 
     for (let i = 0; i < attackButtons.length; i++) {
         attackButtons[i];
-        if (turn !== "player") {
-            attackButtons[i].classList.add("disabled");
+        if (turn !== 'player') {
+            attackButtons[i].classList.add('disabled');
         } else {
-            attackButtons[i].classList.remove("disabled");
+            attackButtons[i].classList.remove('disabled');
         }
     }
 }
 
 // 턴 전환
 function endTurn() {
-    if (turn === "player") {
-        turn = "enemy";
+    if (turn === 'player') {
+        turn = 'enemy';
         MP_Fc(Max_MP / 10);
         updateTurnUI();
         setTimeout(enemyAction, 500); // 1초 후 적의 공격 실행
     } else {
-        turn = "player";
+        turn = 'player';
         updateTurnUI();
     }
 }
-
 
 // 적턴
 function enemyAction() {
     const damage = enemy_lv * 5;
     HP_Fc(-damage);
     alert(`적이 공격했습니다! ${damage} 데미지를 입었습니다.`);
-    gameOver()
+    gameOver();
     endTurn(); // 다시 플레이어 턴으로
 }
 //적 사망
@@ -519,51 +539,45 @@ function dieEnemy() {
             GoldTextFc();
             MPHP_Percent();
             MP_Fc(Max_MP / 5);
-            turn = "player";
-        },500)
+            turn = 'player';
+        }, 500);
     }
 }
 let enemy_char = [
     {
-        name: "슬라임",
-        img: "img/slime.png"
+        name: '슬라임',
+        img: 'img/slime.png',
     },
     {
-        name: "뱀",
-        img: "img/snake.png"
+        name: '뱀',
+        img: 'img/snake.png',
     },
     {
-        name: "늑대",
-        img: "img/wolf.png"
-    }
-]
+        name: '늑대',
+        img: 'img/wolf.png',
+    },
+];
 //적 캐릭터 선택
 function RandomMonster() {
-    let random = Math.random()
-    let enemy_name = document.querySelector(".you_char .name")
-    let enemy_img = document.querySelector(".you_char .char_img")
+    const randomIndex = Math.floor(Math.random() * enemy_char.length);
+    const selectedEnemy = enemy_char[randomIndex];
+    const enemy_name_element = document.querySelector('.you_char .name');
+    const enemy_img_element = document.querySelector('.you_char .char_img');
 
-    if (random <= 0.4) {
-        enemy_name.textContent = enemy_char[0].name
-        enemy_img.style.backgroundImage = ` url(${enemy_char[0].img})`
-    } else if (random <= 0.7) {
-        enemy_name.textContent = enemy_char[1].name
-        enemy_img.style.backgroundImage = ` url(${enemy_char[1].img})`
-    } else if (random <= 1) {
-        enemy_name.textContent = enemy_char[2].name
-        enemy_img.style.backgroundImage = ` url(${enemy_char[2].img})`
-    }
+    enemy_name_element.textContent = selectedEnemy.name;
+    enemy_img_element.style.backgroundImage = `url(${selectedEnemy.img})`;
 }
+
 //게임오버
 function gameOver() {
-    const gameOverText = document.querySelector("#gameOver")
-    const gameOverStageText = document.querySelector("#Die_stage")
+    const gameOverText = document.querySelector('#gameOver');
+    const gameOverStageText = document.querySelector('#Die_stage');
     if (HP === 0) {
         gameOverText.style.display = 'block';
         gameEnd = true;
         setTimeout(() => {
-            gameOverText.classList.add("action");
-            gameOverStageText.textContent = `STAGE ${stage}`
+            gameOverText.classList.add('action');
+            gameOverStageText.textContent = `STAGE ${stage}`;
         }, 1);
     }
 }

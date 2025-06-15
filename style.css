@@ -9,7 +9,7 @@
     display: none;
 }
 .disabled {
-    pointer-events: none; 
+    pointer-events: none;
     opacity: 0.5;
 }
 #LEVELUP {
@@ -31,22 +31,22 @@
 section.main {
     width: 100%;
     height: calc(100vh - 220px);
-    background: white url(img/main_BG.jpg) no-repeat center /cover;
+    background: white url(img/main_BG.jpg) no-repeat center / cover;
 
     position: relative;
 
     padding: 20px 30px;
-    h1{
+    h1 {
         color: #fff;
         font-size: 30px;
     }
 }
 
-.main>article {
+.main > article {
     width: 470px;
     height: 400px;
 
-    &>div {
+    & > div {
         padding: 20px;
     }
 }
@@ -62,7 +62,7 @@ section.main {
     bottom: 0;
     left: 0;
 
-    .char_img{
+    .char_img {
         background: url(img/mychar.png) no-repeat center/110px;
     }
 }
@@ -86,7 +86,7 @@ section.main {
     font-size: 30px;
 }
 
-.HP_MP>div {
+.HP_MP > div {
     width: 402px;
     height: 22px;
     border: 1px solid #000;
@@ -117,7 +117,7 @@ section.main {
 }
 
 .HP_MP .HP_bar {
-    div{
+    div {
         background: #f00;
     }
 }
@@ -171,13 +171,13 @@ section.interaction {
 
     position: relative;
 
-    ul{
+    ul {
         width: 100%;
         height: 80%;
         display: flex;
         justify-content: center;
         margin-top: 10px;
-        li{
+        li {
             width: 20%;
             display: flex;
             flex-direction: column;
@@ -186,22 +186,22 @@ section.interaction {
             text-align: center;
 
             cursor: pointer;
-            &:hover{
+            &:hover {
                 opacity: 60%;
             }
-            
-            img{
+
+            img {
                 width: 75%;
                 margin: 0 auto;
                 color: #fff;
             }
-            h3{
+            h3 {
                 font-weight: 700;
                 font-size: 20px;
             }
         }
     }
-    #GoldText{
+    #GoldText {
         font-size: 15px;
         font-weight: 700;
         position: absolute;
@@ -211,7 +211,7 @@ section.interaction {
 }
 
 .interaction .skill_popup h2 {
-    margin-bottom:10px ;
+    margin-bottom: 10px;
 }
 .interaction .skill_popup ul {
     display: flex;
@@ -236,16 +236,15 @@ section.interaction {
         transform: scale(1.05);
         cursor: pointer;
     }
-    &>div{
+    & > div {
         display: flex;
         gap: 3px;
         align-items: end;
-        &>span{
+        & > span {
             font-size: 12px;
             color: cornflowerblue;
         }
     }
-
 }
 
 /* ===================================Stats_popup======================================= */
@@ -306,7 +305,7 @@ section.interaction {
         }
     }
 
-    &>span:last-child {
+    & > span:last-child {
         position: absolute;
         top: 15px;
         right: 25px;
@@ -332,8 +331,7 @@ section.interaction {
     height: 100vh;
     background: rgba(255, 255, 255, 0.9);
 
-
-    &>div {
+    & > div {
         width: 900px;
         height: 600px;
         background: #222;
@@ -353,7 +351,7 @@ section.interaction {
         }
 
         ul {
-            padding-top: 15PX;
+            padding-top: 15px;
             width: 800px;
             height: 450px;
             margin: 0 auto;
@@ -418,7 +416,7 @@ section.interaction {
             }
         }
 
-        &>span:first-of-type {
+        & > span:first-of-type {
             position: absolute;
             top: 10px;
             right: 25px;
@@ -432,7 +430,7 @@ section.interaction {
                 opacity: 40%;
             }
         }
-        #GoldText2{
+        #GoldText2 {
             font-size: 15px;
             font-weight: 700;
             color: #fff;
@@ -443,17 +441,17 @@ section.interaction {
         }
     }
 }
-.SkillSlot{
+.SkillSlot {
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.9);
-    
+
     position: fixed;
     top: 0;
     left: 0;
-    
+
     z-index: 99999;
-    &>div{
+    & > div {
         width: 500px;
         height: 500px;
         background: #222;
@@ -466,14 +464,14 @@ section.interaction {
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
 
-        ul{
+        ul {
             width: 80%;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            li{
+            li {
                 width: calc(50% - 20px);
                 height: 180px;
                 text-align: center;
@@ -487,11 +485,11 @@ section.interaction {
                 border-radius: 10px;
                 cursor: pointer;
 
-                &:hover{
+                &:hover {
                     opacity: 60%;
                 }
 
-                span{
+                span {
                     font-weight: 900;
                     font-size: 40px;
                 }
@@ -499,7 +497,7 @@ section.interaction {
         }
     }
 }
-#gameOver{
+#gameOver {
     display: none;
     width: 100vw;
     height: 100vh;
@@ -507,35 +505,34 @@ section.interaction {
     top: 0;
     left: 0;
     z-index: 999999999999;
-    background: rgba(0, 0, 0, 0.93);;
-    
-    div{
+    background: rgba(0, 0, 0, 0.93);
 
+    div {
         padding: 40px 100px;
         color: #fff;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
-        
-        span{
+        transform: translate(-50%, -50%);
+
+        span {
             display: block;
             text-align: center;
         }
-        span:first-child{
+        span:first-child {
             font-size: 100px;
             font-weight: 900;
         }
-        span:last-child{
+        span:last-child {
             font-size: 40px;
             font-weight: 700;
         }
     }
-    
+
     transition: opacity 3s ease;
     opacity: 0;
 
     &.action {
-    opacity: 1;
+        opacity: 1;
     }
 }
